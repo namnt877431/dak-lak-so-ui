@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Đắk Lắk Số — Trình bày giao diện</title>
+<meta name="description" content="Trang tổng hợp các nguyên mẫu giao diện ứng dụng Đắk Lắk Số: Lựa chọn 01, Lựa chọn 02 (Glass airy / Warm paper) và bản trình chiếu so sánh.">
+<meta name="theme-color" content="#C43B2A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23C43B2A'/%3E%3Ctext x='50' y='72' font-size='58' font-family='sans-serif' font-weight='700' fill='white' text-anchor='middle'%3EĐ%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F6F1ED;
+  --surface:#FFFFFF;
+  --ink:#241B18;
+  --ink-2:#5C534E;
+  --ink-3:#948A82;
+  --line:#E9E2DC;
+  --red:#C43B2A;
+  --red-d:#9C2B1D;
+  --red-tint:#F8E7E2;
+  --terra:#C0662A;
+  --terra-tint:#F7E7D6;
+  --blue:#2563A8;
+  --r-card:22px;
+  --r-btn:14px;
+  --r-pill:999px;
+  --shadow:0 1px 2px rgba(60,24,16,.05), 0 10px 30px -16px rgba(60,24,16,.28);
+  --shadow-lift:0 2px 4px rgba(60,24,16,.06), 0 26px 48px -22px rgba(60,24,16,.42);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(90% 55% at 100% 0%, #FBEDE7 0%, transparent 62%),
+    radial-gradient(70% 45% at 0% 8%, #F4EFE4 0%, transparent 58%),
+    var(--paper);
+  min-height:100dvh;
+  -webkit-font-smoothing:antialiased;
+  line-height:1.55;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+
+.wrap{max-width:1140px;margin-inline:auto;padding:0 20px}
+
+/* ============ HEADER ============ */
+.top{
+  position:relative;overflow:hidden;color:#fff;
+  background:linear-gradient(155deg,var(--red) 0%,var(--red-d) 100%);
+  border-radius:0 0 30px 30px;
+  padding:38px 0 46px;
+}
+.top::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(60% 90% at 92% 4%, rgba(255,255,255,.20) 0%, transparent 60%),
+    radial-gradient(46% 70% at 4% 100%, rgba(0,0,0,.16) 0%, transparent 62%);
+}
+.top .wrap{position:relative;z-index:1}
+.brand{display:flex;align-items:center;gap:13px;margin-bottom:22px}
+.brand__mark{
+  width:44px;height:44px;flex:none;border-radius:13px;
+  background:#fff;color:var(--red);
+  display:grid;place-items:center;
+  font-weight:700;font-size:23px;line-height:1;
+  box-shadow:0 3px 10px -2px rgba(60,24,16,.4);
+}
+.brand__txt{font-weight:600;font-size:15px;letter-spacing:.14em;text-transform:uppercase}
+.brand__sub{font-weight:400;font-size:12.5px;letter-spacing:.03em;text-transform:none;opacity:.82}
+
+h1{
+  margin:0 0 12px;
+  font-size:clamp(28px,4.4vw,44px);
+  line-height:1.15;font-weight:700;letter-spacing:-.015em;
+  max-width:19ch;
+}
+.lede{margin:0;max-width:60ch;font-size:clamp(15px,1.5vw,17px);opacity:.92}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.chip{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:7px 14px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.26);
+  font-size:13px;font-weight:500;
+}
+.chip b{font-weight:700}
+
+/* ============ SECTIONS ============ */
+main{padding:36px 0 64px}
+.sec{margin-top:44px}
+.sec:first-child{margin-top:0}
+.sec__head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.sec__num{
+  font-size:12px;font-weight:700;letter-spacing:.1em;
+  color:var(--red);background:var(--red-tint);
+  padding:4px 10px;border-radius:var(--r-pill);
+}
+.sec h2{margin:0;font-size:clamp(20px,2.4vw,25px);font-weight:700;letter-spacing:-.01em}
+.sec__desc{margin:0 0 20px;color:var(--ink-2);font-size:14.5px;max-width:74ch}
+
+/* ============ THẺ ============ */
+.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+
+.card{
+  display:flex;flex-direction:column;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--r-card);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+}
+.card:hover,.card:focus-visible{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow-lift);
+  border-color:#E0D3CB;
+}
+.card:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+
+/* khung xem trước dạng điện thoại */
+.stage{
+  position:relative;
+  background:linear-gradient(168deg,#EFE7E1 0%,#E6DCD5 100%);
+  padding:24px 0 0;
+  display:flex;justify-content:center;
+  overflow:hidden;
+  min-height:268px;
+}
+.stage--glass{background:linear-gradient(168deg,#F7EDE8 0%,#EADFE4 100%)}
+.stage--deck{
+  padding:0;align-items:center;min-height:230px;
+  background:linear-gradient(150deg,#2A211C 0%,#4A2C22 55%,#9C2B1D 100%);
+}
+.phone{
+  width:236px;height:244px;
+  border-radius:22px 22px 0 0;
+  border:8px solid #12161a;border-bottom:none;
+  overflow:hidden;position:relative;flex:none;
+  background:var(--paper);
+  box-shadow:0 22px 40px -22px rgba(46,16,10,.75);
+}
+.phone iframe{
+  width:390px;height:844px;border:0;
+  transform:scale(.5641);transform-origin:top left;
+  pointer-events:none;
+}
+.stage__fade{
+  position:absolute;left:0;right:0;bottom:0;height:56px;pointer-events:none;
+  background:linear-gradient(to top,rgba(236,227,221,.92),transparent);
+}
+.stage--glass .stage__fade{background:linear-gradient(to top,rgba(242,232,231,.92),transparent)}
+.tag{
+  position:absolute;top:14px;left:14px;z-index:2;
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 11px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(255,255,255,.8);
+  color:var(--ink-2);font-size:11.5px;font-weight:600;letter-spacing:.02em;
+  box-shadow:0 2px 8px -3px rgba(60,24,16,.35);
+}
+.tag i{width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
+.tag--warm i{background:var(--terra)}
+.tag--blue i{background:var(--blue)}
+
+.card__body{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
+.card__title{margin:0;font-size:17.5px;font-weight:700;letter-spacing:-.01em}
+.card__meta{margin:3px 0 0;font-size:12.5px;color:var(--ink-3);font-weight:500}
+.card__text{margin:10px 0 0;font-size:14px;color:var(--ink-2);flex:1}
+.card__cta{
+  margin-top:16px;display:inline-flex;align-items:center;gap:8px;
+  align-self:flex-start;
+  padding:9px 16px;border-radius:var(--r-btn);
+  background:var(--red);color:#fff;
+  font-size:14px;font-weight:600;
+  transition:background .18s ease;
+}
+.card:hover .card__cta{background:var(--red-d)}
+.card__cta svg{width:15px;height:15px;flex:none}
+
+/* ============ THẺ TRÌNH CHIẾU ============ */
+.deck{grid-column:1/-1}
+@media (min-width:880px){
+  .deck{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,8fr);align-items:stretch}
+  .deck .stage--deck{min-height:100%}
+  .deck .card__body{padding:30px 32px;justify-content:center}
+}
+.deck__art{
+  position:relative;z-index:1;width:100%;height:100%;min-height:230px;
+  display:grid;place-items:center;padding:26px;
+}
+.deck__art svg{width:min(300px,84%);height:auto;filter:drop-shadow(0 18px 30px rgba(0,0,0,.4))}
+.deck .card__title{font-size:clamp(20px,2.2vw,26px)}
+.note{
+  margin-top:14px;display:flex;gap:9px;align-items:flex-start;
+  padding:11px 14px;border-radius:12px;
+  background:var(--terra-tint);color:#7A4212;
+  font-size:12.5px;line-height:1.5;
+}
+.note svg{width:15px;height:15px;flex:none;margin-top:2px}
+
+/* ============ FOOTER ============ */
+footer{
+  border-top:1px solid var(--line);
+  background:rgba(255,255,255,.55);
+  padding:26px 0 34px;
+  font-size:13px;color:var(--ink-3);
+}
+.foot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center}
+
+@media (max-width:640px){
+  .top{padding:28px 0 34px;border-radius:0 0 22px 22px}
+  main{padding:28px 0 48px}
+  .sec{margin-top:34px}
+  .grid{gap:16px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <div class="brand__mark">Đ</div>
+      <div>
+        <div class="brand__txt">Đắk Lắk Số</div>
+        <div class="brand__sub">Nền tảng công dân số tỉnh Đắk Lắk</div>
+      </div>
+    </div>
+    <h1>Trình bày phương án giao diện</h1>
+    <p class="lede">Hai hướng tổ chức thông tin cho màn hình chính, mỗi hướng có hai phiên bản thị giác, kèm bản trình chiếu so sánh từng màn. Chọn một mục bên dưới để mở nguyên mẫu tương tác.</p>
+    <div class="stats">
+      <span class="chip"><b>2</b>&nbsp;phương án cấu trúc</span>
+      <span class="chip"><b>2</b>&nbsp;hướng thị giác</span>
+      <span class="chip"><b>5</b>&nbsp;tài liệu</span>
+      <span class="chip">Xem tốt nhất trên điện thoại</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ===== 1. TRÌNH CHIẾU ===== -->
+  <section class="sec">
+    <div class="sec__head">
+      <span class="sec__num">BẮT ĐẦU TỪ ĐÂY</span>
+      <h2>Bản trình chiếu so sánh</h2>
+    </div>
+    <p class="sec__desc">Đi qua từng màn của hai phương án, đặt cạnh nhau kèm thuyết minh lý do bố trí. Nên xem trước khi mở nguyên mẫu.</p>
+
+    <div class="grid">
+      <a class="card deck" href="DakLakSo-trinhchieu.html" target="_blank" rel="noopener">
+        <div class="stage stage--deck">
+          <span class="tag tag--blue"><i></i>Trình chiếu</span>
+          <div class="deck__art">
+            <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="14" y="26" width="120" height="158" rx="16" fill="#F6F1ED" opacity=".95"/>
+              <rect x="26" y="40" width="96" height="34" rx="10" fill="#C43B2A"/>
+              <rect x="26" y="84" width="44" height="26" rx="8" fill="#E9E2DC"/>
+              <rect x="78" y="84" width="44" height="26" rx="8" fill="#E9E2DC"/>
+              <rect x="26" y="120" width="96" height="13" rx="6.5" fill="#E9E2DC"/>
+              <rect x="26" y="141" width="70" height="13" rx="6.5" fill="#E9E2DC"/>
+              <rect x="26" y="162" width="86" height="13" rx="6.5" fill="#E9E2DC"/>
+              <rect x="166" y="26" width="120" height="158" rx="16" fill="#FBF4F0" opacity=".95"/>
+              <rect x="178" y="40" width="96" height="34" rx="12" fill="#C0662A"/>
+              <rect x="178" y="84" width="96" height="26" rx="10" fill="#F0E8E2"/>
+              <rect x="178" y="120" width="44" height="36" rx="12" fill="#F0E8E2"/>
+              <rect x="230" y="120" width="44" height="36" rx="12" fill="#F0E8E2"/>
+              <rect x="178" y="164" width="96" height="12" rx="6" fill="#F0E8E2"/>
+              <path d="M143 105h13M149 99l7 6-7 6" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".92"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__meta">Tài liệu trình bày</p>
+          <h3 class="card__title">Đắk Lắk Số — Trình chiếu phương án giao diện</h3>
+          <p class="card__text">So sánh Lựa chọn 01 và Lựa chọn 02 trên từng màn: trang chủ, nhóm dịch vụ, bản đồ, tin tức, tài khoản… Mỗi màn kèm thuyết minh cách gom chức năng và lý do đặt tab.</p>
+          <div class="note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <span>Tệp nặng khoảng 5 MB, lần mở đầu tiên cần vài giây để giải nén nội dung.</span>
+          </div>
+          <span class="card__cta">Mở bản trình chiếu
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== 2. LỰA CHỌN 01 ===== -->
+  <section class="sec">
+    <div class="sec__head">
+      <span class="sec__num">LỰA CHỌN 01</span>
+      <h2>Gom theo lĩnh vực quản lý</h2>
+    </div>
+    <p class="sec__desc">Trang chủ chia thành các khối lĩnh vực: Y tế, Giáo dục, Du lịch, Cơ quan nhà nước, An ninh &amp; Trật tự, Truyền thông và Tiện ích. Cách tổ chức bám theo ngành, thuận cho việc quản lý nội dung và mở rộng dịch vụ.</p>
+
+    <div class="grid">
+      <a class="card" href="dak-lak-so-lc1-glass.html" target="_blank" rel="noopener">
+        <div class="stage stage--glass">
+          <span class="tag"><i></i>Glass airy</span>
+          <div class="phone"><iframe src="dak-lak-so-lc1-glass.html" loading="lazy" tabindex="-1" scrolling="no" title="Xem trước Lựa chọn 01 — Glass airy"></iframe></div>
+          <div class="stage__fade"></div>
+        </div>
+        <div class="card__body">
+          <p class="card__meta">Lựa chọn 01 · Hướng thị giác A</p>
+          <h3 class="card__title">Glass airy</h3>
+          <p class="card__text">Nền sáng ngả peach, bo góc lớn, thẻ nổi trên bóng mềm. Cảm giác thoáng và hiện đại.</p>
+          <span class="card__cta">Mở nguyên mẫu
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="card" href="dak-lak-so-lc1-warm.html" target="_blank" rel="noopener">
+        <div class="stage">
+          <span class="tag tag--warm"><i></i>Warm paper</span>
+          <div class="phone"><iframe src="dak-lak-so-lc1-warm.html" loading="lazy" tabindex="-1" scrolling="no" title="Xem trước Lựa chọn 01 — Warm paper"></iframe></div>
+          <div class="stage__fade"></div>
+        </div>
+        <div class="card__body">
+          <p class="card__meta">Lựa chọn 01 · Hướng thị giác B</p>
+          <h3 class="card__title">Warm paper</h3>
+          <p class="card__text">Nền giấy ấm, bo góc vừa, đường nét chắc và tương phản cao. Chữ dễ đọc ngoài trời.</p>
+          <span class="card__cta">Mở nguyên mẫu
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== 3. LỰA CHỌN 02 ===== -->
+  <section class="sec">
+    <div class="sec__head">
+      <span class="sec__num">LỰA CHỌN 02</span>
+      <h2>Gom theo việc người dân cần làm</h2>
+    </div>
+    <p class="sec__desc">Trang chủ chia theo nhóm chức năng: Tiện ích đời sống, Phản ánh – Kiến nghị, Dịch vụ công và Truyền thông – Tin tức. Người dân tìm theo mục đích sử dụng thay vì theo ngành quản lý.</p>
+
+    <div class="grid">
+      <a class="card" href="dak-lak-so-lc2-glass.html" target="_blank" rel="noopener">
+        <div class="stage stage--glass">
+          <span class="tag"><i></i>Glass airy</span>
+          <div class="phone"><iframe src="dak-lak-so-lc2-glass.html" loading="lazy" tabindex="-1" scrolling="no" title="Xem trước Lựa chọn 02 — Glass airy"></iframe></div>
+          <div class="stage__fade"></div>
+        </div>
+        <div class="card__body">
+          <p class="card__meta">Lựa chọn 02 · Hướng thị giác A</p>
+          <h3 class="card__title">Glass airy</h3>
+          <p class="card__text">Cùng hệ màu và bo góc lớn như bản Glass của Lựa chọn 01, áp lên cấu trúc theo nhóm chức năng.</p>
+          <span class="card__cta">Mở nguyên mẫu
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="card" href="dak-lak-so-lc2-warm.html" target="_blank" rel="noopener">
+        <div class="stage">
+          <span class="tag tag--warm"><i></i>Warm paper</span>
+          <div class="phone"><iframe src="dak-lak-so-lc2-warm.html" loading="lazy" tabindex="-1" scrolling="no" title="Xem trước Lựa chọn 02 — Warm paper"></iframe></div>
+          <div class="stage__fade"></div>
+        </div>
+        <div class="card__body">
+          <p class="card__meta">Lựa chọn 02 · Hướng thị giác B</p>
+          <h3 class="card__title">Warm paper</h3>
+          <p class="card__text">Bản nền giấy ấm của Lựa chọn 02 — cùng cấu trúc, khác chất liệu thị giác để đối chiếu trực tiếp.</p>
+          <span class="card__cta">Mở nguyên mẫu
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>Nguyên mẫu giao diện · Đắk Lắk Số</span>
+    <span>Ảnh xem trước là nguyên mẫu chạy thật — bấm vào thẻ để mở bản tương tác.</span>
+  </div>
+</footer>
+
+</body>
+</html>
