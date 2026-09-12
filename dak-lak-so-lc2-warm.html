@@ -22,6 +22,7 @@
 
   --green:#C43B2A;          /* MÀU TƯƠNG TÁC KHÓA CỨNG (đỏ hoàng hôn) */
   --green-d:#9C2B1D;
+  --green-l:#E15A3B;      /* sắc sáng cho gradient header */
   --green-tint:#F8E7E2;
   --terra:#C0662A;          /* cam đất hoàng hôn — điểm nhấn phụ */
   --terra-tint:#F7E7D6;
@@ -514,14 +515,12 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
 .pref__reset{width:100%;padding:13px;border-top:1px solid var(--line-2);color:var(--green);font-size:calc(13px * var(--fz));font-weight:600;display:flex;align-items:center;justify-content:center;gap:7px}
 .pref__reset:active{background:var(--line-2)}
 /* ====== Ô TIỆN ÍCH THẢ NỔI — cố định cỡ, không co giãn theo --fz ====== */
-.kit{position:absolute;right:0;bottom:calc(var(--nav-h) + var(--safe-b) + 92px);z-index:70;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.kit{position:absolute;right:12px;top:calc(var(--top-inset) + 58px);z-index:70}
 .kit[hidden]{display:none}
-.kit__fab{width:34px;height:54px;border-radius:16px 0 0 16px;background:var(--green);color:#fff;display:grid;place-items:center;font-size:20px;border:1px solid rgba(255,255,255,.45);border-right:none;box-shadow:-6px 8px 20px -10px rgba(60,24,16,.7);opacity:.94;transition:.18s}
-.kit__fab:active{opacity:1;padding-right:3px}
-.kit--open .kit__fab{background:var(--green-d);opacity:1}
-.kit__panel{width:216px;margin-right:10px;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 22px 44px -16px rgba(60,24,16,.5);padding:12px;animation:kitin .18s ease}
+.aabtn.on{background:#fff;border-color:#fff;color:var(--green)}
+.kit__panel{width:222px;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 22px 44px -16px rgba(60,24,16,.5);padding:12px;animation:kitin .18s ease}
 .kit__panel[hidden]{display:none}
-@keyframes kitin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes kitin{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
 .kit__head{font-size:12px;font-weight:600;color:var(--ink-2);display:flex;align-items:center;gap:7px;margin-bottom:9px}
 .kit__head i{font-size:17px;color:var(--green)}
 .fzctl--kit{width:100%;justify-content:space-between}
@@ -556,6 +555,7 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
           </span>
         </div>
         <div class="hdr__acts">
+          <button class="iconbtn aabtn" onclick="toggleKit()" aria-label="Cỡ chữ hiển thị" aria-expanded="false"><i class="ph-fill ph-text-aa"></i></button>
           <button class="iconbtn" onclick="go('s-thongbao')" aria-label="Thông báo"><i class="ph ph-bell"></i><span class="dot">3</span></button>
           <button class="iconbtn" onclick="go('s-taikhoan')" aria-label="Tài khoản"><i class="ph ph-user"></i></button>
         </div>
@@ -663,6 +663,7 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
     <header class="subhdr">
       <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
       <h1>Tiện ích đời sống</h1>
+      <div class="sp"><button class="back aabtn" onclick="toggleKit()" aria-label="Cỡ chữ hiển thị" aria-expanded="false"><i class="ph-fill ph-text-aa"></i></button></div>
     </header>
     <p class="grouplabel">Y tế</p>
     <div class="list" style="margin:0 16px">
@@ -697,6 +698,7 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
     <header class="subhdr">
       <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
       <h1>Phản ánh - Kiến nghị</h1>
+      <div class="sp"><button class="back aabtn" onclick="toggleKit()" aria-label="Cỡ chữ hiển thị" aria-expanded="false"><i class="ph-fill ph-text-aa"></i></button></div>
     </header>
     <p class="leadp" style="margin-top:16px">Gửi ý kiến, phản ánh hiện trường và theo dõi tiến độ xử lý của chính quyền địa phương.</p>
     <div class="list" style="margin:8px 16px 0">
@@ -719,6 +721,7 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
     <header class="subhdr">
       <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
       <h1>Phản ánh hiện trường</h1>
+      <div class="sp"><button class="back aabtn" onclick="toggleKit()" aria-label="Cỡ chữ hiển thị" aria-expanded="false"><i class="ph-fill ph-text-aa"></i></button></div>
     </header>
     <p class="leadp" style="margin-top:16px">Cung cấp thông tin càng cụ thể, phản ánh càng được xử lý nhanh. Trường có dấu * là bắt buộc.</p>
 
@@ -770,6 +773,7 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
     <header class="subhdr">
       <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
       <h1>Bản đồ phản ánh</h1>
+      <div class="sp"><button class="back aabtn" onclick="toggleKit()" aria-label="Cỡ chữ hiển thị" aria-expanded="false"><i class="ph-fill ph-text-aa"></i></button></div>
     </header>
 
     <div class="stats">
@@ -820,6 +824,7 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
     <header class="subhdr">
       <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
       <h1>Dịch vụ công</h1>
+      <div class="sp"><button class="back aabtn" onclick="toggleKit()" aria-label="Cỡ chữ hiển thị" aria-expanded="false"><i class="ph-fill ph-text-aa"></i></button></div>
     </header>
     <p class="leadp" style="margin-top:16px">Nộp và theo dõi hồ sơ thủ tục hành chính, kết nối Cổng dịch vụ công Quốc gia.</p>
     <div class="list" style="margin:8px 16px 20px">
@@ -841,6 +846,7 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
     <header class="subhdr">
       <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
       <h1>Truyền thông - Tin tức</h1>
+      <div class="sp"><button class="back aabtn" onclick="toggleKit()" aria-label="Cỡ chữ hiển thị" aria-expanded="false"><i class="ph-fill ph-text-aa"></i></button></div>
     </header>
     <div class="banner" style="margin-top:16px">
       <div class="banner__item"><img src="https://picsum.photos/seed/daklak-news-hero/640/360" alt=""><span class="tag">Nổi bật</span><span class="cap">Đắk Lắk đẩy mạnh chuyển đổi số toàn diện năm 2025</span></div>
@@ -873,6 +879,7 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
     <header class="subhdr">
       <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
       <h1>Tiện ích khác</h1>
+      <div class="sp"><button class="back aabtn" onclick="toggleKit()" aria-label="Cỡ chữ hiển thị" aria-expanded="false"><i class="ph-fill ph-text-aa"></i></button></div>
     </header>
     <div class="sec"><div class="util">
       <button class="ucard" onclick="toast('Đang mở trình tạo mã QR')"><span class="ucard__ic t-teal"><i class="ph-fill ph-qr-code"></i></span><span class="ucard__t">Tạo mã QR</span><span class="ucard__d">QR địa chỉ, liên hệ, thanh toán</span></button>
@@ -887,6 +894,7 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
     <header class="subhdr">
       <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
       <h1>Tất cả dịch vụ</h1>
+      <div class="sp"><button class="back aabtn" onclick="toggleKit()" aria-label="Cỡ chữ hiển thị" aria-expanded="false"><i class="ph-fill ph-text-aa"></i></button></div>
     </header>
     <div class="sec">
       <div class="sec__head"><h2>Nhóm dịch vụ</h2></div>
@@ -906,7 +914,7 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
     <header class="subhdr">
       <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
       <h1>Chi tiết tin</h1>
-      <div class="sp"><button class="back" onclick="toast('Đã lưu tin')"><i class="ph ph-bookmark-simple"></i></button><button class="back" onclick="toast('Đang chia sẻ')"><i class="ph ph-share-network"></i></button></div>
+      <div class="sp"><button class="back aabtn" onclick="toggleKit()" aria-label="Cỡ chữ hiển thị" aria-expanded="false"><i class="ph-fill ph-text-aa"></i></button><button class="back" onclick="toast('Đã lưu tin')"><i class="ph ph-bookmark-simple"></i></button><button class="back" onclick="toast('Đang chia sẻ')"><i class="ph ph-share-network"></i></button></div>
     </header>
     <img src="https://picsum.photos/seed/daklak-congress/720/420" alt="" style="width:100%;aspect-ratio:16/9;object-fit:cover">
     <div style="padding:16px">
@@ -925,7 +933,7 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
       <div class="subhdr__row">
         <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
         <h1>Thông báo</h1>
-        <div class="sp">
+        <div class="sp"><button class="back aabtn" onclick="toggleKit()" aria-label="Cỡ chữ hiển thị" aria-expanded="false"><i class="ph-fill ph-text-aa"></i></button>
           <span class="hbadge">5 mới</span>
           <button class="back" onclick="toast('Đã đánh dấu tất cả là đã đọc')"><i class="ph ph-checks"></i></button>
         </div>
@@ -953,6 +961,7 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
     <header class="subhdr">
       <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
       <h1>Dự báo thời tiết</h1>
+      <div class="sp"><button class="back aabtn" onclick="toggleKit()" aria-label="Cỡ chữ hiển thị" aria-expanded="false"><i class="ph-fill ph-text-aa"></i></button></div>
     </header>
     <div class="wx">
       <div class="wxloc"><i class="ph-fill ph-map-pin"></i> Buôn Ma Thuột, Đắk Lắk</div>
@@ -982,6 +991,7 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
         <i class="ph ph-magnifying-glass"></i>
         <input class="input" style="border:none;padding:0;background:transparent;font-size:calc(13.5px * var(--fz))" placeholder="Tìm dịch vụ, thủ tục, địa điểm…" autofocus>
       </div>
+      <div class="sp"><button class="back aabtn" onclick="toggleKit()" aria-label="Cỡ chữ hiển thị" aria-expanded="false"><i class="ph-fill ph-text-aa"></i></button></div>
     </header>
     <p class="grouplabel">Tìm kiếm phổ biến</p>
     <div class="sec" style="padding-top:0">
@@ -1006,6 +1016,7 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
     <header class="subhdr">
       <button class="back" onclick="go('s-home')"><i class="ph ph-arrow-left"></i></button>
       <h1>Giới thiệu</h1>
+      <div class="sp"><button class="back aabtn" onclick="toggleKit()" aria-label="Cỡ chữ hiển thị" aria-expanded="false"><i class="ph-fill ph-text-aa"></i></button></div>
     </header>
     <div class="intro" style="padding-top:16px">
       <div class="introhero">
@@ -1033,7 +1044,9 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
   <section class="screen" id="s-taikhoan">
     <!-- Trạng thái CHƯA đăng nhập -->
     <div id="auth-out">
-      <header class="subhdr"><button class="back" onclick="go('s-home')"><i class="ph ph-arrow-left"></i></button><h1>Tài khoản</h1></header>
+      <header class="subhdr"><button class="back" onclick="go('s-home')"><i class="ph ph-arrow-left"></i></button><h1>Tài khoản</h1>
+      <div class="sp"><button class="back aabtn" onclick="toggleKit()" aria-label="Cỡ chữ hiển thị" aria-expanded="false"><i class="ph-fill ph-text-aa"></i></button></div>
+    </header>
       <div class="authbox">
         <span class="lock"><i class="ph-fill ph-user-circle"></i></span>
         <h2>Đăng nhập để bắt đầu</h2>
@@ -1128,7 +1141,7 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
   </section>
 
   <!-- Ô tiện ích thả nổi: phóng to / thu nhỏ cỡ chữ -->
-  <div class="kit" id="kit">
+  <div class="kit" id="kit" hidden>
     <div class="kit__panel" id="kitpanel" hidden>
       <div class="kit__head"><i class="ph-fill ph-text-aa"></i> Cỡ chữ hiển thị</div>
       <div class="fzctl fzctl--kit">
@@ -1139,7 +1152,6 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
       <button class="kit__link" onclick="openPref()"><i class="ph ph-palette"></i> Màu nền &amp; biểu tượng</button>
       <button class="kit__link" onclick="prefReset()"><i class="ph ph-arrow-counter-clockwise"></i> Khôi phục mặc định</button>
     </div>
-    <button class="kit__fab" onclick="toggleKit()" aria-label="Tiện ích hiển thị" aria-expanded="false"><i class="ph-fill ph-text-aa"></i></button>
   </div>
 
   <!-- toast -->
@@ -1168,9 +1180,7 @@ function show(id){
   var el=document.getElementById(id); if(el){el.classList.add('active'); el.scrollTop=0;}
   var active=navMap[id]||id;
   document.querySelectorAll('.nav').forEach(function(n){n.classList.toggle('on', n.dataset.nav===active)});
-  /* Màn cá nhân đã có sẵn mục Giao diện hiển thị nên ẩn ô nổi cho đỡ che */
-  var k=document.getElementById('kit');
-  if(k){ k.hidden=(id===PROFILE_SCREEN); if(k.hidden)closeKit(); }
+  if(document.getElementById('kit'))closeKit();
 }
 function go(id){ if(stack[stack.length-1]!==id){stack.push(id);} show(id); }
 function back(){ if(stack.length>1){stack.pop();} show(stack[stack.length-1]); }
@@ -1243,16 +1253,19 @@ function fz(d){
   if(n>FZ.length-1){toast('Đã ở cỡ chữ lớn nhất');return;}
   fzi=n; fzApply(); toast('Cỡ chữ '+Math.round(FZ[fzi]*100)+'%');
 }
+function kitMark(open){
+  document.querySelectorAll('.aabtn').forEach(function(b){
+    b.classList.toggle('on',open); b.setAttribute('aria-expanded',String(open));
+  });
+}
 function toggleKit(){
   var p=document.getElementById('kitpanel'), open=p.hidden;
-  p.hidden=!open;
-  document.getElementById('kit').classList.toggle('kit--open',open);
-  document.querySelector('.kit__fab').setAttribute('aria-expanded',String(open));
+  p.hidden=!open; document.getElementById('kit').hidden=!open; kitMark(open);
 }
 function closeKit(){
   document.getElementById('kitpanel').hidden=true;
-  document.getElementById('kit').classList.remove('kit--open');
-  document.querySelector('.kit__fab').setAttribute('aria-expanded','false');
+  document.getElementById('kit').hidden=true;
+  kitMark(false);
 }
 function openPref(){
   closeKit(); go(PROFILE_SCREEN);
@@ -1270,7 +1283,7 @@ var BG={
   'dark' :{'--paper':'#171311','--surface':'#221C19','--ink':'#F5EFEA','--ink-2':'#C6BAB1','--ink-3':'#948880','--line':'#342B26','--line-2':'#2A2320','--toast-bg':'#3B302B'}
 };
 var BGKEYS=['--paper','--surface','--ink','--ink-2','--ink-3','--line','--line-2','--toast-bg'];
-var ICKEYS=['--green','--green-d','--green-tint'];
+var ICKEYS=['--green','--green-l','--green-d','--green-tint','--glow-1','--glow-2','--glow-3'];
 function swMark(id,btn){
   var g=document.getElementById(id); if(!g||!btn)return;
   g.querySelectorAll('.sw').forEach(function(b){b.classList.remove('on')});
@@ -1287,8 +1300,12 @@ function setIc(c,btn){
   ICKEYS.forEach(function(p){r.style.removeProperty(p)});
   if(c&&c!=='default'){
     r.style.setProperty('--green',c);
+    r.style.setProperty('--green-l','color-mix(in srgb,'+c+' 78%, #fff)');
     r.style.setProperty('--green-d','color-mix(in srgb,'+c+' 76%, #000)');
     r.style.setProperty('--green-tint','color-mix(in srgb,'+c+' 13%, #fff)');
+    r.style.setProperty('--glow-1','color-mix(in srgb,'+c+' 26%, transparent)');
+    r.style.setProperty('--glow-2','color-mix(in srgb,'+c+' 18%, transparent)');
+    r.style.setProperty('--glow-3','color-mix(in srgb,'+c+' 14%, transparent)');
   }
   swMark('sw-ic',btn);
 }
