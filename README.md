@@ -22,6 +22,17 @@ Bộ nguyên mẫu giao diện (HTML tĩnh) cho ứng dụng công dân số **�
 
 Mỗi phương án có hai hướng thị giác: **Glass airy** (nền sáng ngả peach, bo góc lớn) và **Warm paper** (nền giấy ấm, đường nét chắc).
 
+## Cập nhật giao diện (bản mới nhất)
+
+Áp dụng cho cả 4 nguyên mẫu:
+
+1. **Lĩnh vực phản ánh** ở màn *Phản ánh hiện trường* chuyển từ dãy chip sang **dropdown** (`<select>`).
+2. **Màn Thông báo** dựng lại theo slide: **thanh menu ngang** (Tất cả · Thời sự · Cảnh báo · Ứng dụng) dính theo header, kết hợp **danh sách thẻ cuộn dọc**; mỗi loại một màu nhận diện, chấm đỏ báo chưa đọc.
+3. Màn *Cá nhân / Tài khoản* thêm nút **Đăng nhập bằng tài khoản cán bộ** — đăng nhập vào sẽ đổi hồ sơ sang cán bộ và mở thêm khối *Khu vực cán bộ*.
+4. **Ô tiện ích thả nổi** ở mép phải: phóng to / thu nhỏ cỡ chữ (85% → 145%). Mục **Giao diện hiển thị** trong màn Cá nhân cho chọn **màu nền** (5 tuỳ chọn, có nền tối) và **màu biểu tượng** (5 tuỳ chọn), kèm nút khôi phục mặc định.
+
+Cỡ chữ chạy bằng biến CSS `--fz`: mọi khai báo `font-size` trong nguyên mẫu đã đổi thành `calc(Npx * var(--fz))`, riêng ô tiện ích nổi giữ cỡ cố định để không tự phóng theo.
+
 ## Chạy tại máy
 
 Các tệp đều là HTML tĩnh, mở trực tiếp bằng trình duyệt là được. Nếu muốn phần xem trước trong `index.html` hiển thị đúng, nên chạy qua một máy chủ tĩnh:
