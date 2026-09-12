@@ -29,7 +29,7 @@ Mỗi phương án có hai hướng thị giác: **Glass airy** (nền sáng ng�
 1. **Lĩnh vực phản ánh** ở màn *Phản ánh hiện trường* chuyển từ dãy chip sang **dropdown** (`<select>`).
 2. **Màn Thông báo** dựng lại theo slide: **thanh menu ngang** (Tất cả · Thời sự · Cảnh báo · Ứng dụng) dính theo header, kết hợp **danh sách thẻ cuộn dọc**; mỗi loại một màu nhận diện, chấm đỏ báo chưa đọc.
 3. Màn *Cá nhân / Tài khoản* thêm nút **Đăng nhập bằng tài khoản cán bộ** — đăng nhập vào sẽ đổi hồ sơ sang cán bộ và mở thêm khối *Khu vực cán bộ*.
-4. Nút **Aa** đặt ngay trên thanh tiêu đề của mọi màn, mở bảng chỉnh **cỡ chữ** (85% → 145%). Mục **Giao diện hiển thị** trong màn Cá nhân cho chọn **màu nền** (5 tuỳ chọn, có nền tối) và **màu biểu tượng** (5 tuỳ chọn), kèm nút khôi phục mặc định.
+4. Nút **bánh răng** đặt ngay trên thanh tiêu đề của mọi màn, mở bảng chỉnh **cỡ chữ** (85% → 145%); khi bảng mở, biểu tượng đổi thành **Aa**. Mục **Giao diện hiển thị** trong màn Cá nhân cho chọn **màu nền** (5 tuỳ chọn, có nền tối) và **màu biểu tượng** (5 tuỳ chọn), kèm nút khôi phục mặc định.
 
 Ghi chú kỹ thuật của phần này:
 
