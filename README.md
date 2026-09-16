@@ -44,6 +44,10 @@ Bốn nguyên mẫu đã nhúng chatbot của tỉnh (`chatbot.daklak.gov.vn`, b
 - **Bỏ phần chèn thẻ `<meta name="viewport">`** — nguyên mẫu đã có sẵn thẻ này kèm `viewport-fit=cover` cho safe-area, chèn thêm sẽ ghi đè.
 - **Ghim bong bóng chat vào trong khung điện thoại.** Widget là iframe `position:fixed` gắn thẳng vào `<body>` nên mặc định sẽ nổi ở góc trình duyệt, tách rời khung máy. Một `MutationObserver` chuyển iframe vào `.device` ngay khi nó xuất hiện, kèm `.device{contain:layout}` để `position:fixed` lấy khung máy làm mốc, và CSS đẩy bong bóng lên trên thanh điều hướng.
 
+- **Thay trạng thái thu gọn bằng avatar riêng.** Mặc định widget thu gọn thành một thanh chữ nhật màu navy, lệch hẳn với bộ màu của app. Nay thay bằng nút tròn dùng **logo tỉnh Đắk Lắk** (lấy lại đúng ảnh đang dùng ở `.brand__mark`, không nhúng thêm bản sao) kèm **huy hiệu ngôi sao AI** màu theo chủ đề. Bấm avatar mới mở cửa sổ chat; thu gọn từ trong cửa sổ thì avatar quay lại.
+
+  Điều khiển dựa trên `postMessage` mà widget gửi ra (`{height,width,type:"chatbot"}` — thu gọn ~39px, mở ~420px). Nếu widget đang ở trạng thái thu gọn thì nạp lại `src` để nó tự bung. Lưu ý: nội dung *bên trong* cửa sổ chat (thanh navy, avatar bot, bong bóng tin nhắn) nằm trong iframe cross-origin nên không sửa được từ đây — muốn đổi phải chỉnh theme của bid trên trang quản trị bot platform.
+
 Chatbot không nạp khi nguyên mẫu nằm trong khung xem trước ở `index.html` (kiểm tra `window.self !== window.top`), tránh bốn thẻ xem trước cùng lúc tạo bốn widget.
 
 ## Chạy tại máy
