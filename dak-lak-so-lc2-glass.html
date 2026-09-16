@@ -590,6 +590,17 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
 .kit__link i{font-size:16px;color:var(--green);flex:none}
 .kit__link:active{transform:scale(.98)}
 @media (prefers-reduced-motion:reduce){.kit__panel{animation:none}}
+/* ============ CHATBOT ĐẮK LẮK ============ */
+/* Bong bóng chat là iframe position:fixed gắn vào <body>. Cho .device làm
+   containing block để nó nằm gọn trong khung điện thoại thay vì góc trình duyệt. */
+.device{contain:layout}
+#botplatform_iframe{
+  right:8px!important;
+  bottom:calc(var(--nav-h) + var(--safe-b) + 10px)!important;
+  max-width:calc(100% - 16px)!important;
+  max-height:calc(100% - var(--nav-h) - var(--safe-b) - 20px)!important;
+  color-scheme:normal;
+}
 </style>
 </head>
 <body>
@@ -1406,6 +1417,46 @@ function loginStaff(){
   document.getElementById('staffbox').hidden=false;
   toast('Đã đăng nhập bằng tài khoản cán bộ');
 }
+</script>
+
+
+<!-- ============================ CHATBOT ĐẮK LẮK ============================ -->
+<script type="text/javascript">
+(function () {
+  /* Bỏ qua khi nguyên mẫu đang nằm trong khung xem trước ở trang index,
+     để 4 thẻ xem trước không cùng lúc nạp 4 widget chat. */
+  if (window.self !== window.top) return;
+  /* Đoạn gốc của chatbot còn chèn thêm một thẻ <meta name="viewport">. Nguyên mẫu
+     đã có sẵn thẻ này kèm viewport-fit=cover (dùng cho safe-area của máy có tai thỏ)
+     nên bỏ phần đó, chỉ giữ phần nạp script. */
+  var a = document.createElement("script");
+  a.async = !0;
+  a.type = "text/javascript";
+  a.id = "platform-script";
+  a.setAttribute("data-bid", "6a41d332eeb029acee001e60");
+  a.setAttribute("data-appName", "website");
+  a.src = "https://chatbot.daklak.gov.vn/js/apps/chatbox/chatbox.botplatform.js";
+  var b = document.getElementsByTagName("script")[0];
+  b.parentNode.insertBefore(a, b);
+})();
+</script>
+<script>
+/* Chuyển iframe chat vào trong .device ngay khi nó được tạo */
+(function () {
+  if (window.self !== window.top) return;
+  var device = document.querySelector('.device');
+  if (!device) return;
+  function adopt(){
+    var f = document.getElementById('botplatform_iframe');
+    if (!f || f.parentNode === device) return !!f;
+    device.appendChild(f);
+    return true;
+  }
+  if (adopt()) return;
+  var mo = new MutationObserver(function(){ if (adopt()) mo.disconnect(); });
+  mo.observe(document.body, {childList:true});
+  setTimeout(function(){ mo.disconnect(); }, 20000);
+})();
 </script>
 
 </body>

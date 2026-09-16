@@ -37,6 +37,15 @@ Ghi chú kỹ thuật của phần này:
 - Màu biểu tượng đặt lại `--green`, `--green-l`, `--green-d`, `--green-tint` và ba vệt loang nền `--glow-*`, nên đổi màu là header, nút, icon, chữ nhấn và nền cùng ăn theo.
 - Bản *Glass airy* trước đây hardcode gradient header và nền màn hình nên hai cài đặt trên không có tác dụng; nay đã đưa hết về token.
 
+## Chatbot
+
+Bốn nguyên mẫu đã nhúng chatbot của tỉnh (`chatbot.daklak.gov.vn`, bid `6a41d332eeb029acee001e60`). Hai điều chỉnh so với đoạn nhúng gốc:
+
+- **Bỏ phần chèn thẻ `<meta name="viewport">`** — nguyên mẫu đã có sẵn thẻ này kèm `viewport-fit=cover` cho safe-area, chèn thêm sẽ ghi đè.
+- **Ghim bong bóng chat vào trong khung điện thoại.** Widget là iframe `position:fixed` gắn thẳng vào `<body>` nên mặc định sẽ nổi ở góc trình duyệt, tách rời khung máy. Một `MutationObserver` chuyển iframe vào `.device` ngay khi nó xuất hiện, kèm `.device{contain:layout}` để `position:fixed` lấy khung máy làm mốc, và CSS đẩy bong bóng lên trên thanh điều hướng.
+
+Chatbot không nạp khi nguyên mẫu nằm trong khung xem trước ở `index.html` (kiểm tra `window.self !== window.top`), tránh bốn thẻ xem trước cùng lúc tạo bốn widget.
+
 ## Chạy tại máy
 
 Các tệp đều là HTML tĩnh, mở trực tiếp bằng trình duyệt là được. Nếu muốn phần xem trước trong `index.html` hiển thị đúng, nên chạy qua một máy chủ tĩnh:
