@@ -577,6 +577,127 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
 /* cửa sổ chat chỉ hiện khi bấm avatar */
 #botplatform_iframe{opacity:0;pointer-events:none}
 #botplatform_iframe.bot-show{opacity:1;pointer-events:auto}
+/* ============ CHI TIẾT PHẢN ÁNH ============ */
+/* 1 · khối trạng thái — thứ người dân mở ra để xem đầu tiên */
+.pdstat{margin:14px 16px 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);box-shadow:var(--shadow);overflow:hidden}
+.pdstat__top{display:flex;gap:13px;align-items:center;padding:16px 16px 13px}
+.pdstat__ic{width:46px;height:46px;flex:none;border-radius:14px;display:grid;place-items:center;font-size:calc(26px * var(--fz));background:var(--green-tint);color:var(--ok)}
+.pdstat__b{min-width:0;flex:1}
+.pdstat__t{display:block;font-size:calc(17px * var(--fz));font-weight:700;line-height:1.2}
+.pdstat__d{display:block;font-size:calc(12px * var(--fz));color:var(--ink-2);margin-top:4px;line-height:1.45}
+.pdstat__org{display:flex;align-items:center;gap:8px;margin:0 16px 14px;padding:9px 11px;border-radius:12px;background:var(--line-2);font-size:calc(11.5px * var(--fz));color:var(--ink-3);min-width:0}
+.pdstat__org i{font-size:calc(15px * var(--fz));color:var(--green);flex:none}
+.pdstat__org b{font-weight:600;color:var(--ink);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.steps{display:flex;padding:0 14px 16px}
+.step{flex:1;min-width:0;text-align:center;position:relative}
+.step::before{content:"";position:absolute;top:9px;left:-50%;width:100%;height:2px;background:var(--line)}
+.step:first-child::before{display:none}
+.step.done::before{background:var(--ok)}
+.step i{position:relative;z-index:1;display:grid;place-items:center;width:20px;height:20px;margin:0 auto;border-radius:50%;background:var(--line);color:#fff;font-size:calc(11px * var(--fz))}
+.step.done i{background:var(--ok)}
+.step.now i{background:var(--green);box-shadow:0 0 0 4px var(--green-tint)}
+.step span{display:block;font-size:calc(10px * var(--fz));color:var(--ink-3);margin-top:6px;line-height:1.25;overflow-wrap:break-word}
+.step.done span,.step.now span{color:var(--ink-2);font-weight:600}
+
+/* 2 · card có tiêu đề */
+.pdcard{margin:14px 16px 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);box-shadow:var(--shadow);overflow:hidden}
+.pdcard__hd{display:flex;align-items:center;gap:9px;padding:13px 16px;border-bottom:1px solid var(--line-2);font-size:calc(13.5px * var(--fz));font-weight:700;min-width:0}
+.pdcard__hd>i{font-size:calc(17px * var(--fz));color:var(--green);flex:none}
+.pdcard__hd em{margin-left:auto;flex:none;font-style:normal;font-size:calc(11px * var(--fz));font-weight:600;color:var(--ink-3)}
+.pdcard__bd{padding:14px 16px}
+
+/* cơ quan trả lời — nói rõ ai nói, nói khi nào */
+.org{display:flex;gap:11px;align-items:center;margin-bottom:11px;min-width:0}
+.org__av{width:38px;height:38px;flex:none;border-radius:11px;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;padding:4px;overflow:hidden}
+.org__av img{width:100%;height:100%;object-fit:contain}
+.org__b{min-width:0}
+.org__t{display:block;font-size:calc(13px * var(--fz));font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.org__d{display:block;font-size:calc(11px * var(--fz));color:var(--ink-3);margin-top:2px}
+
+/* văn bản dài: thu gọn 5 dòng */
+.clamp{font-size:calc(13px * var(--fz));line-height:1.6;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.clamp.open{-webkit-line-clamp:unset;display:block}
+.morebtn{margin-top:9px;font-size:calc(12.5px * var(--fz));font-weight:600;color:var(--green);display:flex;align-items:center;gap:5px}
+.morebtn i{font-size:calc(14px * var(--fz));transition:transform .2s}
+.morebtn.open i{transform:rotate(180deg)}
+
+/* 3 · dòng thời gian xử lý */
+.tl{display:block}
+.tl__i{display:flex;gap:12px;min-width:0;position:relative;padding-bottom:15px}
+.tl__i:last-child{padding-bottom:0}
+.tl__i::before{content:"";position:absolute;left:8px;top:21px;bottom:0;width:2px;background:var(--line)}
+.tl__i:last-child::before{display:none}
+.tl__d{width:18px;height:18px;flex:none;border-radius:50%;background:var(--line);display:grid;place-items:center;color:#fff;font-size:calc(10px * var(--fz));position:relative;z-index:1}
+.tl__i.done .tl__d{background:var(--ok)}
+.tl__i.wait .tl__d{background:var(--line);color:var(--ink-3)}
+.tl__b{min-width:0;flex:1;margin-top:-1px}
+.tl__t{display:block;font-size:calc(12.5px * var(--fz));font-weight:600;line-height:1.35}
+.tl__m{display:block;font-size:calc(10.5px * var(--fz));color:var(--ink-3);margin-top:3px}
+
+/* 4 · đánh giá — bỏ bộ đếm, rõ là thao tác của chính mình */
+.rate{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.rate[hidden],.rated[hidden]{display:none}
+.rate button{display:flex;flex-direction:column;align-items:center;gap:7px;padding:14px 6px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);transition:.15s}
+.rate button i{font-size:calc(28px * var(--fz));color:var(--ink-3)}
+.rate button span{font-size:calc(11.5px * var(--fz));font-weight:600;color:var(--ink-2);text-align:center;line-height:1.25}
+.rate button[aria-pressed="true"]{border-color:var(--green);background:var(--green-tint)}
+.rate button[aria-pressed="true"] i,.rate button[aria-pressed="true"] span{color:var(--green)}
+.rate button:active{transform:scale(.96)}
+.rated{display:flex;align-items:center;gap:10px;min-width:0}
+.rated>i{font-size:calc(24px * var(--fz));color:var(--ok);flex:none}
+.rated b{font-size:calc(13px * var(--fz));font-weight:600;min-width:0}
+.rated button{margin-left:auto;flex:none;font-size:calc(12px * var(--fz));font-weight:600;color:var(--green)}
+.pdcard__bd .hint{font-size:calc(11.5px * var(--fz));color:var(--ink-3);margin:10px 0 0;line-height:1.5}
+
+/* 5 · ảnh người dân gửi kèm */
+.shotwrap{position:relative;margin-bottom:13px}
+.shots{display:flex;gap:9px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.shots::-webkit-scrollbar{height:0}
+.shots img{width:134px;height:100px;flex:none;border-radius:12px;object-fit:cover;background:var(--line-2)}
+.shotcount{position:absolute;right:9px;top:9px;background:rgba(36,27,24,.74);color:#fff;font-size:calc(10.5px * var(--fz));font-weight:600;padding:4px 9px;border-radius:var(--r-pill);display:flex;align-items:center;gap:5px}
+.shotcount i{font-size:calc(12px * var(--fz))}
+.kv{display:flex;gap:10px;font-size:calc(12.5px * var(--fz));padding:9px 0;border-top:1px solid var(--line-2);min-width:0}
+.kv:first-child{border-top:none;padding-top:0}
+.kv dt{flex:none;width:86px;color:var(--ink-3);margin:0}
+.kv dd{margin:0;min-width:0;flex:1;font-weight:500;overflow-wrap:break-word}
+
+/* khối gập lại được */
+.fold__h{width:100%;display:flex;align-items:center;gap:9px;padding:13px 16px;font-size:calc(13.5px * var(--fz));font-weight:700;text-align:left;min-width:0}
+.fold__h>i:first-child{font-size:calc(17px * var(--fz));color:var(--green);flex:none}
+.fold__h .cv{margin-left:auto;flex:none;color:var(--ink-3);font-size:calc(16px * var(--fz));transition:transform .2s}
+.fold.open .fold__h .cv{transform:rotate(180deg)}
+.fold__c{display:none;padding:14px 16px;border-top:1px solid var(--line-2)}
+.fold.open .fold__c{display:block}
+
+/* 6 · trao đổi hai chiều */
+.bubs{display:flex;flex-direction:column;gap:11px;margin-bottom:13px}
+.bub{max-width:86%;padding:10px 13px;border-radius:14px;border-bottom-left-radius:5px;font-size:calc(12.5px * var(--fz));line-height:1.5;background:var(--line-2);color:var(--ink);align-self:flex-start;min-width:0;overflow-wrap:break-word}
+.bub--me{align-self:flex-end;background:var(--green-tint);border-bottom-left-radius:14px;border-bottom-right-radius:5px}
+.bub b{display:block;font-size:calc(10.5px * var(--fz));font-weight:700;color:var(--ink-2);margin-bottom:4px}
+.bub small{display:block;font-size:calc(10.5px * var(--fz));color:var(--ink-3);margin-top:5px}
+.composer__act{display:flex;align-items:center;gap:10px;margin-top:10px}
+.composer__act .attach{display:flex;align-items:center;gap:6px;font-size:calc(12.5px * var(--fz));font-weight:600;color:var(--green)}
+.composer__act .attach i{font-size:calc(16px * var(--fz))}
+.composer__act .btn{width:auto;margin-left:auto;padding:11px 20px}
+
+/* liên kết xem cách bố cục còn lại */
+.altlink{display:flex;align-items:center;justify-content:center;gap:7px;margin:18px 16px 0;padding:12px;border-radius:var(--r-btn);border:1px dashed var(--line);color:var(--ink-3);font-size:calc(12px * var(--fz));font-weight:600;width:calc(100% - 32px)}
+.altlink i{font-size:calc(15px * var(--fz))}
+
+/* dòng thời gian hội thoại — cách bố cục B */
+.flow{padding:14px 16px 0}
+.flow__i{display:flex;gap:12px;position:relative;padding-bottom:15px;min-width:0}
+.flow__i::before{content:"";position:absolute;left:15px;top:36px;bottom:0;width:2px;background:var(--line)}
+.flow__i:last-child::before{display:none}
+.flow__av{width:32px;height:32px;flex:none;border-radius:10px;display:grid;place-items:center;font-size:calc(16px * var(--fz));position:relative;z-index:1;overflow:hidden;padding:0}
+.flow__av img{width:100%;height:100%;object-fit:contain;padding:3px;background:var(--surface)}
+.flow__b{min-width:0;flex:1}
+.flow__who{display:flex;align-items:baseline;gap:8px;min-width:0;margin-bottom:6px}
+.flow__who b{font-size:calc(12.5px * var(--fz));font-weight:700;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.flow__who small{font-size:calc(10.5px * var(--fz));color:var(--ink-3);flex:none;margin-left:auto}
+.flow__c{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;box-shadow:var(--shadow);font-size:calc(12.5px * var(--fz));line-height:1.55;color:var(--ink-2);min-width:0;overflow-wrap:break-word}
+.flow__c--soft{background:var(--line-2);border-color:transparent;box-shadow:none;color:var(--ink-3);font-size:calc(11.5px * var(--fz));padding:9px 12px}
+.flow__c .shots img{width:118px;height:88px}
 </style>
 </head>
 <body>
@@ -757,8 +878,8 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
     <div class="sec">
       <div class="sec__head"><h2>Phản ánh của tôi</h2></div>
       <div class="list">
-        <div class="li"><span class="li__ic" style="background:var(--amber-tint);color:var(--warn)"><i class="ph-fill ph-hourglass-medium"></i></span><span class="li__b"><span class="li__t">Đèn chiếu sáng hỏng đường Nguyễn Tất Thành</span><span class="li__d">Đang xử lý · phường Tân Lập · mã PA-24817</span></span></div>
-        <div class="li"><span class="li__ic" style="background:var(--green-tint);color:var(--ok)"><i class="ph-fill ph-check-circle"></i></span><span class="li__b"><span class="li__t">Đổ rác không đúng nơi quy định chợ Ea Tam</span><span class="li__d">Đã xử lý · phường Ea Tam · mã PA-24655</span></span></div>
+        <button class="li" onclick="go('s-pa-detail-tl')"><span class="li__ic" style="background:var(--amber-tint);color:var(--warn)"><i class="ph-fill ph-hourglass-medium"></i></span><span class="li__b"><span class="li__t">Đèn chiếu sáng hỏng đường Nguyễn Tất Thành</span><span class="li__d">Đang xử lý · phường Tân Lập · mã PA-24817</span></span><i class="ph ph-caret-right li__chev"></i></button>
+        <button class="li" onclick="go('s-pa-detail')"><span class="li__ic" style="background:var(--green-tint);color:var(--ok)"><i class="ph-fill ph-check-circle"></i></span><span class="li__b"><span class="li__t">Đổ rác không đúng nơi quy định chợ Ea Tam</span><span class="li__d">Đã xử lý · phường Ea Tam · mã PA-24655</span></span><i class="ph ph-caret-right li__chev"></i></button>
       </div>
     </div>
   </section>
@@ -1201,6 +1322,244 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
     </div>
   </div>
 
+
+  <!-- ==================== CHI TIẾT PHẢN ÁNH · bố cục A (thẻ theo khối) ==================== -->
+  <section class="screen" id="s-pa-detail">
+    <header class="subhdr">
+      <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
+      <h1>Chi tiết phản ánh</h1>
+      <div class="sp">
+        <button class="back" onclick="toast('Chia sẻ phản ánh #1982884')" aria-label="Chia sẻ"><i class="ph ph-share-network"></i></button>
+        <button class="back aabtn" onclick="toggleKit()" aria-label="Cài đặt hiển thị" aria-expanded="false"><i class="ph ph-gear-six"></i></button>
+      </div>
+    </header>
+
+    <!-- 1 · trạng thái: khối nổi bật nhất, trả lời ngay câu "xong chưa" -->
+    <div class="pdstat">
+      <div class="pdstat__top">
+        <span class="pdstat__ic"><i class="ph-fill ph-check-circle"></i></span>
+        <span class="pdstat__b">
+          <span class="pdstat__t">Đã xử lý xong</span>
+          <span class="pdstat__d">Hoàn thành 05/10/2026 · sau 3 ngày kể từ khi gửi</span>
+        </span>
+      </div>
+      <div class="pdstat__org"><i class="ph-fill ph-buildings"></i> Đơn vị xử lý: <b>UBND xã Tuy An Bắc</b></div>
+      <div class="steps">
+        <span class="step done"><i class="ph ph-check"></i><span>Tiếp nhận</span></span>
+        <span class="step done"><i class="ph ph-check"></i><span>Phân công</span></span>
+        <span class="step done"><i class="ph ph-check"></i><span>Đang xử lý</span></span>
+        <span class="step done"><i class="ph ph-check"></i><span>Hoàn thành</span></span>
+      </div>
+    </div>
+
+    <!-- 2 · kết quả xử lý: đưa lên trước nội dung gốc -->
+    <div class="pdcard">
+      <div class="pdcard__hd"><i class="ph-fill ph-seal-check"></i> Kết quả xử lý</div>
+      <div class="pdcard__bd">
+        <div class="org">
+          <span class="org__av"><img class="org-logo" alt=""></span>
+          <span class="org__b">
+            <span class="org__t">UBND xã Tuy An Bắc</span>
+            <span class="org__d">Trả lời lúc 16:40 · 05/10/2026</span>
+          </span>
+        </div>
+        <p class="clamp" id="pa-reply">UBND xã Tuy An Bắc đã kiểm tra thực tế tại khu vực thôn Long Bình. Xã đã chỉ đạo Tổ vệ sinh môi trường thu gom toàn bộ lượng rác tồn đọng trong ngày 04/10/2026, đồng thời vận động các hộ dân phía sau đăng ký dịch vụ thu gom rác định kỳ. Điểm tập kết tạm sẽ được di dời ra khỏi khu dân cư trước ngày 20/10/2026. Rất mong Quý công dân tiếp tục phối hợp và đồng hành trong công tác bảo vệ môi trường. Trân trọng cảm ơn Ông/Bà.</p>
+        <button class="morebtn" onclick="toggleClamp(this,'pa-reply')">Xem thêm <i class="ph ph-caret-down"></i></button>
+      </div>
+    </div>
+
+    <!-- 3 · quá trình xử lý hiện luôn, không bắt bấm sang màn khác -->
+    <div class="pdcard">
+      <div class="pdcard__hd"><i class="ph-fill ph-list-checks"></i> Quá trình xử lý <em>4 bước</em></div>
+      <div class="pdcard__bd">
+        <div class="tl">
+          <div class="tl__i done"><span class="tl__d"><i class="ph ph-check"></i></span><span class="tl__b"><span class="tl__t">Tiếp nhận phản ánh</span><span class="tl__m">02/10/2026 09:10 · Bộ phận một cửa xã Tuy An Bắc</span></span></div>
+          <div class="tl__i done"><span class="tl__d"><i class="ph ph-check"></i></span><span class="tl__b"><span class="tl__t">Phân công Tổ vệ sinh môi trường</span><span class="tl__m">02/10/2026 14:25 · Hạn xử lý 09/10/2026</span></span></div>
+          <div class="tl__i done"><span class="tl__d"><i class="ph ph-check"></i></span><span class="tl__b"><span class="tl__t">Kiểm tra hiện trường, thu gom rác tồn đọng</span><span class="tl__m">04/10/2026 07:30</span></span></div>
+          <div class="tl__i done"><span class="tl__d"><i class="ph ph-check"></i></span><span class="tl__b"><span class="tl__t">Hoàn thành và trả kết quả</span><span class="tl__m">05/10/2026 16:40 · trước hạn 4 ngày</span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 · đánh giá: ba nút, không kèm bộ đếm -->
+    <div class="pdcard">
+      <div class="pdcard__hd"><i class="ph-fill ph-star"></i> Bạn đánh giá kết quả này thế nào?</div>
+      <div class="pdcard__bd">
+        <div class="rate" id="pa-rate">
+          <button aria-pressed="false" onclick="rate(this,'Rất hài lòng')"><i class="ph ph-smiley"></i><span>Rất hài lòng</span></button>
+          <button aria-pressed="false" onclick="rate(this,'Hài lòng')"><i class="ph ph-smiley-meh"></i><span>Hài lòng</span></button>
+          <button aria-pressed="false" onclick="rate(this,'Chưa hài lòng')"><i class="ph ph-smiley-sad"></i><span>Chưa hài lòng</span></button>
+        </div>
+        <div class="rated" id="pa-rated" hidden>
+          <i class="ph-fill ph-check-circle"></i>
+          <b>Bạn đã đánh giá: <span id="pa-rated-v"></span></b>
+          <button onclick="rateAgain()">Sửa</button>
+        </div>
+        <p class="hint" style="margin-top:10px">Đánh giá của bạn được gửi tới đơn vị xử lý và cơ quan theo dõi.</p>
+      </div>
+    </div>
+
+    <!-- 5 · nội dung người dân đã gửi, gập lại vì người gửi đã biết mình viết gì -->
+    <div class="pdcard fold open" id="pa-sent">
+      <button class="fold__h" onclick="toggleFold('pa-sent')">
+        <i class="ph-fill ph-paper-plane-tilt"></i> Nội dung bạn đã gửi <i class="ph ph-caret-down cv"></i>
+      </button>
+      <div class="fold__c">
+        <div class="shotwrap">
+          <div class="shots"><img src="https://picsum.photos/seed/daklak-rac-1/400/300" alt="Ảnh phản ánh 1" loading="lazy"><img src="https://picsum.photos/seed/daklak-rac-2/400/300" alt="Ảnh phản ánh 2" loading="lazy"><img src="https://picsum.photos/seed/daklak-rac-3/400/300" alt="Ảnh phản ánh 3" loading="lazy"></div>
+          <span class="shotcount"><i class="ph-fill ph-images"></i> 3 ảnh</span>
+        </div>
+        <dl style="margin:0">
+          <div class="kv"><dt>Tiêu đề</dt><dd>Rác gây ô nhiễm môi trường</dd></div>
+          <div class="kv"><dt>Lĩnh vực</dt><dd>Môi trường</dd></div>
+          <div class="kv"><dt>Vị trí</dt><dd>Thôn Long Bình, xã Tuy An Bắc, tỉnh Đắk Lắk <button class="sec__more" style="display:inline-flex;margin-left:4px" onclick="toast('Mở vị trí trên bản đồ')">Xem bản đồ <i class="ph ph-caret-right"></i></button></dd></div>
+          <div class="kv"><dt>Mã phản ánh</dt><dd>#1982884</dd></div>
+          <div class="kv"><dt>Thời gian gửi</dt><dd>02/10/2026 07:22</dd></div>
+        </dl>
+        <p class="clamp" id="pa-content" style="margin:11px 0 0">rác thải người dân phía sau tự dồn tập kết bãi trước nhà người dân gây ô nhiễm, sát góc nhà karaoke bảo hân - thôn long bình, nhờ cấp chính quyền xã vận động người dân phía sau đóng tiền rác để xe tới tận nơi thu gom rác đi đổ hoặc di dời điểm bãi tập kết rác thải cách xa nhà người dân xung quanh ra xa, chứ rác thải bay mùi hôi không chịu được, xóm toàn người già và trẻ con rất nhiều, cũng nhờ chính quyền xã giải quyết dùm cho chúng tôi, chúng tôi xin cảm ơn</p>
+        <button class="morebtn" onclick="toggleClamp(this,'pa-content')">Xem thêm <i class="ph ph-caret-down"></i></button>
+      </div>
+    </div>
+
+    <!-- 6 · trao đổi: hiện hội thoại đã có, không chỉ một ô trống -->
+    <div class="pdcard">
+      <div class="pdcard__hd"><i class="ph-fill ph-chats-circle"></i> Trao đổi với đơn vị xử lý</div>
+      <div class="pdcard__bd">
+        <div class="bubs">
+          <span class="bub"><b>UBND xã Tuy An Bắc</b>Xã đã nhận phản ánh, nhờ anh/chị cho biết thêm điểm tập kết nằm cách nhà bao xa ạ?<small>02/10/2026 10:05</small></span>
+          <span class="bub bub--me">Khoảng 15 mét, ngay sát hông nhà tôi.<small>02/10/2026 10:31</small></span>
+          <span class="bub"><b>UBND xã Tuy An Bắc</b>Xã ghi nhận, sẽ cử tổ môi trường kiểm tra trong tuần này.<small>02/10/2026 11:12</small></span>
+        </div>
+        <textarea class="textarea" style="min-height:70px" placeholder="Nhập nội dung trao đổi…"></textarea>
+        <div class="composer__act">
+          <button class="attach" onclick="toast('Đang mở thư viện ảnh')"><i class="ph ph-paperclip"></i> Đính kèm</button>
+          <button class="btn btn--pri" onclick="toast('Đã gửi nội dung trao đổi')"><i class="ph ph-paper-plane-tilt"></i> Gửi</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="altlink" onclick="go('s-pa-detail-tl')"><i class="ph ph-arrows-left-right"></i> Xem cách bố cục B · dòng thời gian</button>
+  </section>
+
+  <!-- ==================== CHI TIẾT PHẢN ÁNH · bố cục B (dòng thời gian) ==================== -->
+  <section class="screen" id="s-pa-detail-tl">
+    <header class="subhdr">
+      <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
+      <h1>Chi tiết phản ánh</h1>
+      <div class="sp">
+        <button class="back" onclick="toast('Chia sẻ phản ánh #1982884')" aria-label="Chia sẻ"><i class="ph ph-share-network"></i></button>
+        <button class="back aabtn" onclick="toggleKit()" aria-label="Cài đặt hiển thị" aria-expanded="false"><i class="ph ph-gear-six"></i></button>
+      </div>
+    </header>
+
+    <div class="pdstat">
+      <div class="pdstat__top">
+        <span class="pdstat__ic"><i class="ph-fill ph-check-circle"></i></span>
+        <span class="pdstat__b">
+          <span class="pdstat__t">Đã xử lý xong</span>
+          <span class="pdstat__d">Rác gây ô nhiễm môi trường · #1982884 · Môi trường</span>
+        </span>
+      </div>
+      <div class="pdstat__org"><i class="ph-fill ph-buildings"></i> <b>UBND xã Tuy An Bắc</b> · hoàn thành 05/10/2026</div>
+    </div>
+
+    <div class="grouplabel">Diễn biến phản ánh</div>
+    <div class="flow">
+      <div class="flow__i">
+        <span class="flow__av t-green"><i class="ph-fill ph-user"></i></span>
+        <span class="flow__b">
+          <span class="flow__who"><b>Bạn đã gửi phản ánh</b><small>02/10 · 07:22</small></span>
+          <span class="flow__c">
+            <span class="shotwrap" style="display:block">
+              <span class="shots" style="display:flex"><img src="https://picsum.photos/seed/daklak-rac-1/400/300" alt="Ảnh phản ánh 1" loading="lazy"><img src="https://picsum.photos/seed/daklak-rac-2/400/300" alt="Ảnh phản ánh 2" loading="lazy"><img src="https://picsum.photos/seed/daklak-rac-3/400/300" alt="Ảnh phản ánh 3" loading="lazy"></span>
+              <span class="shotcount"><i class="ph-fill ph-images"></i> 3 ảnh</span>
+            </span>
+            <span style="display:flex;align-items:center;gap:6px;color:var(--ink-3);font-size:calc(11.5px * var(--fz));margin-bottom:8px"><i class="ph-fill ph-map-pin"></i> Thôn Long Bình, xã Tuy An Bắc</span>
+            <span class="clamp" id="tl-content">rác thải người dân phía sau tự dồn tập kết bãi trước nhà người dân gây ô nhiễm, sát góc nhà karaoke bảo hân - thôn long bình, nhờ cấp chính quyền xã vận động người dân phía sau đóng tiền rác để xe tới tận nơi thu gom rác đi đổ hoặc di dời điểm bãi tập kết rác thải cách xa nhà người dân xung quanh ra xa, chứ rác thải bay mùi hôi không chịu được, xóm toàn người già và trẻ con rất nhiều, cũng nhờ chính quyền xã giải quyết dùm cho chúng tôi, chúng tôi xin cảm ơn</span>
+          </span>
+          <button class="morebtn" onclick="toggleClamp(this,'tl-content')">Xem thêm <i class="ph ph-caret-down"></i></button>
+        </span>
+      </div>
+
+      <div class="flow__i">
+        <span class="flow__av t-blue"><i class="ph-fill ph-tray-arrow-down"></i></span>
+        <span class="flow__b">
+          <span class="flow__who"><b>Xã tiếp nhận</b><small>02/10 · 09:10</small></span>
+          <span class="flow__c flow__c--soft">Bộ phận một cửa xã Tuy An Bắc tiếp nhận, hạn xử lý 09/10/2026.</span>
+        </span>
+      </div>
+
+      <div class="flow__i">
+        <span class="flow__av t-blue"><i class="ph-fill ph-chats-circle"></i></span>
+        <span class="flow__b">
+          <span class="flow__who"><b>UBND xã Tuy An Bắc</b><small>02/10 · 10:05</small></span>
+          <span class="flow__c">Xã đã nhận phản ánh, nhờ anh/chị cho biết thêm điểm tập kết nằm cách nhà bao xa ạ?</span>
+        </span>
+      </div>
+
+      <div class="flow__i">
+        <span class="flow__av t-green"><i class="ph-fill ph-user"></i></span>
+        <span class="flow__b">
+          <span class="flow__who"><b>Bạn trả lời</b><small>02/10 · 10:31</small></span>
+          <span class="flow__c" style="background:var(--green-tint);border-color:transparent">Khoảng 15 mét, ngay sát hông nhà tôi.</span>
+        </span>
+      </div>
+
+      <div class="flow__i">
+        <span class="flow__av t-amber"><i class="ph-fill ph-wrench"></i></span>
+        <span class="flow__b">
+          <span class="flow__who"><b>Đang xử lý</b><small>04/10 · 07:30</small></span>
+          <span class="flow__c flow__c--soft">Tổ vệ sinh môi trường kiểm tra hiện trường và thu gom toàn bộ rác tồn đọng.</span>
+        </span>
+      </div>
+
+      <div class="flow__i">
+        <span class="flow__av"><img class="org-logo" alt=""></span>
+        <span class="flow__b">
+          <span class="flow__who"><b>UBND xã Tuy An Bắc trả lời</b><small>05/10 · 16:40</small></span>
+          <span class="flow__c"><span class="clamp" id="tl-reply">UBND xã Tuy An Bắc đã kiểm tra thực tế tại khu vực thôn Long Bình. Xã đã chỉ đạo Tổ vệ sinh môi trường thu gom toàn bộ lượng rác tồn đọng trong ngày 04/10/2026, đồng thời vận động các hộ dân phía sau đăng ký dịch vụ thu gom rác định kỳ. Điểm tập kết tạm sẽ được di dời ra khỏi khu dân cư trước ngày 20/10/2026. Rất mong Quý công dân tiếp tục phối hợp và đồng hành trong công tác bảo vệ môi trường. Trân trọng cảm ơn Ông/Bà.</span></span>
+          <button class="morebtn" onclick="toggleClamp(this,'tl-reply')">Xem thêm <i class="ph ph-caret-down"></i></button>
+        </span>
+      </div>
+
+      <div class="flow__i">
+        <span class="flow__av t-green"><i class="ph-fill ph-check-circle"></i></span>
+        <span class="flow__b">
+          <span class="flow__who"><b>Hoàn thành</b><small>05/10 · 16:40</small></span>
+          <span class="flow__c flow__c--soft">Phản ánh được xử lý xong, trước hạn 4 ngày.</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="pdcard">
+      <div class="pdcard__hd"><i class="ph-fill ph-star"></i> Bạn đánh giá kết quả này thế nào?</div>
+      <div class="pdcard__bd">
+        <div class="rate" id="tl-rate">
+          <button aria-pressed="false" onclick="rate(this,'Rất hài lòng')"><i class="ph ph-smiley"></i><span>Rất hài lòng</span></button>
+          <button aria-pressed="false" onclick="rate(this,'Hài lòng')"><i class="ph ph-smiley-meh"></i><span>Hài lòng</span></button>
+          <button aria-pressed="false" onclick="rate(this,'Chưa hài lòng')"><i class="ph ph-smiley-sad"></i><span>Chưa hài lòng</span></button>
+        </div>
+        <div class="rated" id="tl-rated" hidden>
+          <i class="ph-fill ph-check-circle"></i>
+          <b>Bạn đã đánh giá: <span id="tl-rated-v"></span></b>
+          <button onclick="rateAgain()">Sửa</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pdcard">
+      <div class="pdcard__bd">
+        <textarea class="textarea" style="min-height:70px" placeholder="Trao đổi thêm với đơn vị xử lý…"></textarea>
+        <div class="composer__act">
+          <button class="attach" onclick="toast('Đang mở thư viện ảnh')"><i class="ph ph-paperclip"></i> Đính kèm</button>
+          <button class="btn btn--pri" onclick="toast('Đã gửi nội dung trao đổi')"><i class="ph ph-paper-plane-tilt"></i> Gửi</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="altlink" onclick="go('s-pa-detail')"><i class="ph ph-arrows-left-right"></i> Xem cách bố cục A · thẻ theo khối</button>
+  </section>
+
   <!-- toast -->
   <div class="toast" id="toast"><i class="ph-fill ph-check-circle"></i><span id="toastmsg"></span></div>
   </div><!-- /viewport -->
@@ -1227,7 +1586,7 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
 var stack=['s-home'];
 var PROFILE_SCREEN='s-taikhoan';
 var navMap={'s-home':'s-home','s-gioithieu':'s-gioithieu','s-phananh-form':'s-phananh-form','s-search':'s-search','s-taikhoan':'s-taikhoan',
-  's-phananh-group':'s-phananh-form','s-banphananh':'s-phananh-form','s-doisong':'s-home','s-dvc':'s-home','s-tintuc':'s-home','s-tienich':'s-home','s-all':'s-home','s-news':'s-home','s-thongbao':'s-home','s-thoitiet':'s-home'};
+  's-phananh-group':'s-phananh-form','s-pa-detail':'s-phananh-form','s-pa-detail-tl':'s-phananh-form','s-banphananh':'s-phananh-form','s-doisong':'s-home','s-dvc':'s-home','s-tintuc':'s-home','s-tienich':'s-home','s-all':'s-home','s-news':'s-home','s-thongbao':'s-home','s-thoitiet':'s-home'};
 
 function show(id){
   document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active')});
@@ -1400,6 +1759,31 @@ function loginStaff(){
   document.getElementById('staffbox').hidden=false;
   toast('Đã đăng nhập bằng tài khoản cán bộ');
 }
+/* ---- Chi tiết phản ánh ---- */
+function toggleClamp(btn, id){
+  var el = document.getElementById(id), open = el.classList.toggle('open');
+  btn.classList.toggle('open', open);
+  btn.childNodes[0].nodeValue = open ? 'Thu gọn ' : 'Xem thêm ';
+}
+function toggleFold(id){ document.getElementById(id).classList.toggle('open'); }
+function rate(btn, nhan){
+  var box = btn.closest('.rate'), pre = box.id.split('-')[0];
+  box.querySelectorAll('button').forEach(function(b){ b.setAttribute('aria-pressed','false') });
+  btn.setAttribute('aria-pressed','true');
+  document.getElementById(pre+'-rated-v').textContent = nhan;
+  box.hidden = true;
+  document.getElementById(pre+'-rated').hidden = false;
+  toast('Cảm ơn bạn đã đánh giá: ' + nhan);
+}
+function rateAgain(){
+  document.querySelectorAll('.rate').forEach(function(b){ b.hidden = false });
+  document.querySelectorAll('.rated').forEach(function(b){ b.hidden = true });
+}
+/* logo cơ quan dùng lại logo tỉnh đã nhúng sẵn */
+(function(){
+  var src = document.querySelector('.brand__mark img');
+  if (src) document.querySelectorAll('.org-logo').forEach(function(i){ i.src = src.src });
+})();
 </script>
 
 

@@ -37,6 +37,17 @@ Ghi chú kỹ thuật của phần này:
 - Màu biểu tượng đặt lại `--green`, `--green-l`, `--green-d`, `--green-tint` và ba vệt loang nền `--glow-*`, nên đổi màu là header, nút, icon, chữ nhấn và nền cùng ăn theo.
 - Bản *Glass airy* trước đây hardcode gradient header và nền màn hình nên hai cài đặt trên không có tác dụng; nay đã đưa hết về token.
 
+## Màn Chi tiết phản ánh (chỉ bản `lc2-warm`)
+
+Dựng lại theo thứ tự câu hỏi của người dân — *Xong chưa? → Xã trả lời sao? → Tôi đã gửi gì?* — thay vì thứ tự cũ (ảnh → nội dung dài → kết quả nằm cuối). Hai cách bố cục để đặt cạnh nhau mà chọn:
+
+- **`s-pa-detail` · thẻ theo khối** — khối trạng thái nổi bật nhất trên cùng (đã xử lý, ngày hoàn thành, đơn vị xử lý, stepper 4 bước) → kết quả xử lý có tên đơn vị và ngày trả lời → timeline 4 mốc hiện luôn → đánh giá → *nội dung bạn đã gửi* (gập lại được) → trao đổi hai chiều.
+- **`s-pa-detail-tl` · dòng thời gian** — cả màn là một mạch: bạn gửi → xã tiếp nhận → hỏi đáp → đang xử lý → xã trả lời → hoàn thành → đánh giá.
+
+Vào từ hai mục trong *Phản ánh - Kiến nghị → Phản ánh của tôi*; mỗi màn có nút ở cuối để nhảy sang cách bố cục còn lại.
+
+Những chỗ sửa so với bản cũ: trạng thái từ chip nhỏ thành khối đầu trang; kết quả xử lý đưa lên trước nội dung gốc và gắn rõ tên đơn vị + ngày; **bỏ bộ đếm ở Mức độ hài lòng** (3 nút là thao tác của chính người dùng, chọn xong đổi thành "Bạn đã đánh giá: … · Sửa"); **Trao đổi thông tin** từ một ô nhập trống thành hội thoại hai chiều có tên người gửi và thời gian; ảnh gửi kèm thành dải ngang có đếm số; nội dung dài thu gọn 5 dòng kèm "Xem thêm"; *Chia sẻ* đẩy lên header.
+
 ## Chatbot
 
 Bốn nguyên mẫu đã nhúng chatbot của tỉnh (`chatbot.daklak.gov.vn`, bid `6a41d332eeb029acee001e60`). Hai điều chỉnh so với đoạn nhúng gốc:
