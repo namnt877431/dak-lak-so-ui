@@ -514,6 +514,154 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
 .fzctl b{font-size:calc(12px * var(--fz));font-weight:600;min-width:46px;text-align:center}
 .pref__reset{width:100%;padding:13px;border-top:1px solid var(--line-2);color:var(--green);font-size:calc(13px * var(--fz));font-weight:600;display:flex;align-items:center;justify-content:center;gap:7px}
 .pref__reset:active{background:var(--line-2)}
+/* ============ THẺ ĐỊA ĐIỂM — ảnh tràn viền, thông tin nằm trên lớp phủ ============ */
+.pcard{position:relative;display:block;width:calc(100% - 32px);margin:0 16px 14px;border-radius:22px;overflow:hidden;background:var(--line-2);text-align:left;isolation:isolate;
+  box-shadow:0 2px 6px rgba(60,24,16,.07), 0 20px 36px -20px rgba(60,24,16,.55)}
+.pcard:active{transform:scale(.993)}
+.pcard[hidden]{display:none}
+.pcard__ph{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+/* ảnh ghép 2×2 cho cơ sở lưu trú */
+.pmos{display:grid;grid-template-columns:1.85fr 1fr;grid-template-rows:repeat(3,1fr);gap:2px;aspect-ratio:16/11}
+.pmos img:first-child{grid-column:1;grid-row:1 / span 3}
+.pmos img{width:100%;height:100%;min-height:0;object-fit:cover;display:block}
+/* lớp phủ: tối dần về đáy để chữ trắng luôn đọc được dù ảnh sáng */
+.pcard__veil{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top, rgba(20,11,7,.93) 0%, rgba(20,11,7,.80) 11%, rgba(20,11,7,.46) 25%, rgba(20,11,7,.14) 39%, rgba(20,11,7,.02) 52%, transparent 62%)}
+.pcard__b{position:absolute;left:16px;right:16px;bottom:15px;display:flex;align-items:flex-end;gap:12px;min-width:0;color:#fff}
+.pcard__txt{flex:1;min-width:0}
+.pcard__t{display:block;font-size:calc(16px * var(--fz));font-weight:700;line-height:1.28;letter-spacing:-.2px;overflow-wrap:break-word}
+.pcard__a{display:block;margin-top:6px;font-size:calc(11.5px * var(--fz));line-height:1.4;color:rgba(255,255,255,.9);overflow-wrap:break-word}
+.pcard__a i{font-size:calc(13px * var(--fz));margin-right:5px;vertical-align:-1px}
+/* hàng chỉ số dưới tên: sao, khoảng cách */
+.pstat{display:flex;align-items:center;gap:14px;margin-top:8px;font-size:calc(12px * var(--fz));font-weight:700}
+.pstat span{display:inline-flex;align-items:center;gap:5px}
+.pstat i{font-size:calc(14px * var(--fz))}
+.pstat .st{color:#FFC94D}
+.pstat .dt{color:rgba(255,255,255,.92)}
+
+/* chip kính nổi trên ảnh */
+.pchips{position:absolute;top:0;left:0;right:0;padding:13px;display:flex;align-items:center;gap:7px;flex-wrap:wrap;pointer-events:none;background:linear-gradient(to bottom, rgba(18,10,6,.34), rgba(18,10,6,0))}
+.pchips>*{pointer-events:auto}
+.gchip{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border-radius:var(--r-pill);
+  font-size:calc(11.5px * var(--fz));font-weight:700;color:#fff;
+  background:rgba(26,15,11,.40);border:1px solid rgba(255,255,255,.26);
+  -webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%)}
+.gchip i{font-size:calc(13px * var(--fz))}
+.gchip--r{margin-left:auto}
+/* nút gọi: nền sáng để bật hẳn khỏi ảnh */
+.pcall{flex:none;display:inline-flex;align-items:center;gap:7px;padding:9px 13px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.96);color:var(--green);font-size:calc(12.5px * var(--fz));font-weight:700;
+  box-shadow:0 8px 18px -8px rgba(0,0,0,.6)}
+.pcall i{font-size:calc(15px * var(--fz))}
+.pcall:active{transform:scale(.96)}
+
+/* ============ DANH BẠ CƠ SỞ (Y tế · Giáo dục) — gộp nhóm, gạch mảnh ============ */
+.dcount{margin:0 16px 10px;font-size:calc(12px * var(--fz));color:var(--ink-3)}
+.dgroup{margin:0 16px 14px;border-radius:20px;overflow:hidden;background:var(--surface);
+  box-shadow:0 1px 2px rgba(60,24,16,.05), 0 16px 30px -22px rgba(60,24,16,.5)}
+.dgroup__h{display:flex;align-items:center;gap:10px;width:100%;padding:13px 15px;background:var(--green-tint);text-align:left}
+.dgroup__h b{flex:1;min-width:0;font-size:calc(11.5px * var(--fz));font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--green-d);line-height:1.3}
+.dgroup__n{flex:none;padding:3px 10px;border-radius:var(--r-pill);background:var(--surface);color:var(--green-d);font-size:calc(11px * var(--fz));font-weight:700}
+.dgroup__h>i{flex:none;font-size:calc(16px * var(--fz));color:var(--green-d);transition:transform .2s}
+.dgroup.closed .dgroup__h>i{transform:rotate(-90deg)}
+.dgroup.closed .dgroup__bd{display:none}
+.drow{display:flex;gap:12px;width:100%;padding:13px 15px;align-items:flex-start;text-align:left}
+.drow+.drow{border-top:1px solid var(--line-2)}
+.drow:active{background:var(--line-2)}
+.dic{flex:none;width:42px;height:42px;border-radius:14px;display:grid;place-items:center;overflow:hidden;
+  font-size:calc(21px * var(--fz));background:var(--green-tint);color:var(--green)}
+.dic img{width:100%;height:100%;object-fit:cover;display:block}
+.dbd{flex:1;min-width:0}
+.dt2{display:block;font-size:calc(14px * var(--fz));font-weight:600;line-height:1.32;overflow-wrap:break-word}
+.da{display:block;margin-top:3px;font-size:calc(11.5px * var(--fz));color:var(--ink-3);line-height:1.42}
+.dhang{display:inline-flex;align-items:center;gap:5px;margin-top:7px;padding:3px 10px;border-radius:var(--r-pill);
+  font-size:calc(10.5px * var(--fz));font-weight:700;background:var(--line-2);color:var(--ink-2)}
+.dhang--1{background:color-mix(in srgb, var(--ok) 14%, transparent);color:var(--ok)}
+.dhang--2{background:color-mix(in srgb, var(--blue) 14%, transparent);color:var(--blue)}
+.dacts{display:flex;gap:18px;margin-top:9px}
+.dacts span{display:inline-flex;align-items:center;gap:6px;font-size:calc(12px * var(--fz));font-weight:600;color:var(--green)}
+.dacts i{font-size:calc(15px * var(--fz))}
+.pad-b{padding-top:14px;padding-bottom:4px}
+/* ô trống của tab phụ */
+.dholder{margin:0 16px 14px;padding:26px 18px;border-radius:20px;background:var(--surface);border:1px dashed var(--line);text-align:center}
+.dholder i{font-size:calc(34px * var(--fz));color:var(--green);opacity:.55}
+.dholder p{margin-top:10px;font-size:calc(12.5px * var(--fz));color:var(--ink-3);line-height:1.5}
+
+/* ---- Lưới 2 cột cho Điểm du lịch · Quán cà phê · Lưu trú ---- */
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-left:16px;padding-right:16px;align-items:start}
+.pgrid .pcard{width:auto;margin:0;border-radius:18px}
+.pgrid .pcard__ph{aspect-ratio:1/1}
+.pgrid .pmos{aspect-ratio:1/1;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
+.pgrid .pmos img:first-child{grid-column:auto;grid-row:auto}
+/* thẻ nhỏ nên lớp phủ phải dày hơn để chữ không chìm vào ảnh */
+.pgrid .pcard__veil{background:linear-gradient(to top, rgba(20,11,7,.96) 0%, rgba(20,11,7,.90) 20%, rgba(20,11,7,.64) 40%, rgba(20,11,7,.22) 55%, rgba(20,11,7,.02) 70%, transparent 80%)}
+.pgrid .pcard__b{left:11px;right:11px;bottom:11px;flex-direction:column;align-items:stretch;gap:0}
+/* cắt bớt để các thẻ trong một hàng cao bằng nhau */
+.pgrid .pcard__t{font-size:calc(13.5px * var(--fz));line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pgrid .pcard__a{font-size:calc(10.5px * var(--fz));margin-top:4px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pgrid .pcard__a i{font-size:calc(11.5px * var(--fz));margin-right:4px}
+.pgrid .pstat{font-size:calc(11px * var(--fz));gap:11px;margin-top:6px}
+.pgrid .pstat i{font-size:calc(12.5px * var(--fz))}
+.pgrid .pcall{align-self:flex-start;margin-top:7px;padding:5px 9px;font-size:calc(10.5px * var(--fz));gap:4px;box-shadow:0 4px 10px -4px rgba(0,0,0,.5)}
+.pgrid .pcall i{font-size:calc(12px * var(--fz))}
+/* lưu trú có tới 4 ảnh nên thẻ cao hơn một chút cho ảnh còn đọc được */
+.pgrid--tall .pmos{aspect-ratio:1/1;grid-template-columns:1fr;grid-template-rows:1fr}
+.pgrid--tall .pmos img+img{display:none}
+.pgrid--tall .pcard__veil{background:linear-gradient(to top, rgba(20,11,7,.96) 0%, rgba(20,11,7,.92) 26%, rgba(20,11,7,.70) 42%, rgba(20,11,7,.28) 56%, rgba(20,11,7,.05) 68%, transparent 78%)}
+
+/* ============ CHI TIẾT ĐỊA ĐIỂM ============ */
+.vhero{position:relative;aspect-ratio:16/10;background:var(--line-2)}
+.vhero img{width:100%;height:100%;object-fit:cover;display:block}
+.vhero__n{position:absolute;right:12px;bottom:12px}
+.vhero__dots{position:absolute;left:0;right:0;bottom:14px;display:flex;justify-content:center;gap:5px;pointer-events:none}
+.vhero__dots i{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.5)}
+.vhero__dots i.on{width:16px;border-radius:3px;background:#fff}
+
+.vhead{padding:14px 16px 0}
+.vkind{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:var(--r-pill);background:var(--terra);color:#fff;font-size:calc(10px * var(--fz));font-weight:700;letter-spacing:.3px;text-transform:uppercase}
+.vname{margin:9px 0 0;font-size:calc(19px * var(--fz));font-weight:700;line-height:1.26;letter-spacing:-.3px}
+.vmeta2{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:9px;font-size:calc(12px * var(--fz));color:var(--ink-3)}
+.vmeta2 b{display:inline-flex;align-items:center;gap:5px;font-weight:700;color:var(--ink)}
+.vmeta2 b i{color:#E8A723;font-size:calc(15px * var(--fz))}
+.vmeta2 .sep{width:3px;height:3px;border-radius:50%;background:var(--ink-3);flex:none}
+.vnorate{font-weight:600;color:var(--ink-3)}
+.vaddr{display:block;margin-top:8px;font-size:calc(12.5px * var(--fz));color:var(--ink-2);line-height:1.45}
+.vaddr i{color:var(--green);margin-right:5px;vertical-align:-2px;font-size:calc(15px * var(--fz))}
+
+/* hàng hành động */
+.vbar{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:15px 16px 0;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+.vbar button{display:flex;flex-direction:column;align-items:center;gap:5px;padding:11px 4px 10px;min-width:0}
+.vbar button+button{border-left:1px solid var(--line-2)}
+.vbar i{font-size:calc(20px * var(--fz));color:var(--green);flex:none}
+.vbar span{font-size:calc(10.5px * var(--fz));font-weight:600;color:var(--ink-2);line-height:1.2;text-align:center}
+.vbar button:active{background:var(--line-2)}
+.vbar button.on i,.vbar button.on span{color:var(--green-d)}
+
+/* chip thông tin nhanh — gom các trường số rời rạc lại cho liếc một cái là thấy */
+.vfacts{display:flex;flex-wrap:wrap;gap:8px;margin:15px 16px 0}
+.vfact{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border-radius:var(--r-pill);background:var(--surface);border:1px solid var(--line);font-size:calc(11.5px * var(--fz));font-weight:600;color:var(--ink-2)}
+.vfact i{font-size:calc(14px * var(--fz));color:var(--green);flex:none}
+
+/* khối nội dung */
+.vsec{margin:20px 16px 0}
+.vsec>h2{font-size:calc(11.5px * var(--fz));font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--ink-3);margin:0 0 9px}
+.vbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:14px;box-shadow:var(--shadow)}
+.vbox>.clamp{margin:0}
+.vrowi{display:flex;gap:11px;align-items:flex-start;text-align:left}
+.vrowi+.vrowi{margin-top:13px;padding-top:13px;border-top:1px solid var(--line-2)}
+.vrowi>i{flex:none;font-size:calc(18px * var(--fz));color:var(--green);margin-top:2px}
+.vrowi .b{flex:1;min-width:0}
+.vrowi b{display:block;font-size:calc(10.5px * var(--fz));font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.4px}
+.vrowi p{margin:4px 0 0;font-size:calc(13px * var(--fz));line-height:1.5;overflow-wrap:break-word}
+.vgo2{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:13px;padding:12px;border-radius:var(--r-btn);background:var(--green);color:#fff;font-size:calc(13px * var(--fz));font-weight:600}
+.vgo2 i{font-size:calc(17px * var(--fz))}
+.vgo2:active{filter:brightness(.95)}
+/* cặp nhãn – giá trị của khối đăng ký */
+.vkv{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:12px 15px}
+.vkv+.vkv{border-top:1px solid var(--line-2)}
+.vkv span{flex:none;font-size:calc(12px * var(--fz));color:var(--ink-3)}
+.vkv b{min-width:0;text-align:right;font-size:calc(12.5px * var(--fz));font-weight:600;overflow-wrap:break-word}
+
 /* ====== Ô TIỆN ÍCH THẢ NỔI — cố định cỡ, không co giãn theo --fz ====== */
 .kit{position:absolute;right:12px;top:calc(var(--top-inset) + 58px);z-index:70}
 .kit[hidden]{display:none}
@@ -578,63 +726,71 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
 #botplatform_iframe{opacity:0;pointer-events:none}
 #botplatform_iframe.bot-show{opacity:1;pointer-events:auto}
 /* ============ CHI TIẾT PHẢN ÁNH ============ */
-/* 1 · khối trạng thái — thứ người dân mở ra để xem đầu tiên */
-.pdstat{margin:14px 16px 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);box-shadow:var(--shadow);overflow:hidden}
-.pdstat__top{display:flex;gap:13px;align-items:center;padding:16px 16px 13px}
-.pdstat__ic{width:46px;height:46px;flex:none;border-radius:14px;display:grid;place-items:center;font-size:calc(26px * var(--fz));background:var(--green-tint);color:var(--ok)}
-.pdstat__b{min-width:0;flex:1}
-.pdstat__t{display:block;font-size:calc(17px * var(--fz));font-weight:700;line-height:1.2}
-.pdstat__d{display:block;font-size:calc(12px * var(--fz));color:var(--ink-2);margin-top:4px;line-height:1.45}
-.pdstat__org{display:flex;align-items:center;gap:8px;margin:0 16px 14px;padding:9px 11px;border-radius:12px;background:var(--line-2);font-size:calc(11.5px * var(--fz));color:var(--ink-3);min-width:0}
-.pdstat__org i{font-size:calc(15px * var(--fz));color:var(--green);flex:none}
-.pdstat__org b{font-weight:600;color:var(--ink);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.steps{display:flex;padding:0 14px 16px}
-.step{flex:1;min-width:0;text-align:center;position:relative}
-.step::before{content:"";position:absolute;top:9px;left:-50%;width:100%;height:2px;background:var(--line)}
-.step:first-child::before{display:none}
-.step.done::before{background:var(--ok)}
-.step i{position:relative;z-index:1;display:grid;place-items:center;width:20px;height:20px;margin:0 auto;border-radius:50%;background:var(--line);color:#fff;font-size:calc(11px * var(--fz))}
-.step.done i{background:var(--ok)}
-.step.now i{background:var(--green);box-shadow:0 0 0 4px var(--green-tint)}
-.step span{display:block;font-size:calc(10px * var(--fz));color:var(--ink-3);margin-top:6px;line-height:1.25;overflow-wrap:break-word}
-.step.done span,.step.now span{color:var(--ink-2);font-weight:600}
+/* thẻ đầu trang: ảnh lớn + phần nhận diện */
+.pdhead{margin:14px 16px 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);box-shadow:var(--shadow);overflow:hidden}
+.pdhead__bd{padding:15px 16px 16px}
+.hero{position:relative;background:var(--line-2)}
+.hero__strip{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.hero__strip::-webkit-scrollbar{height:0}
+.hero__strip img{width:100%;flex:none;aspect-ratio:16/10;object-fit:cover;scroll-snap-align:center;display:block}
+.hero__n{position:absolute;right:12px;bottom:12px;background:rgba(36,27,24,.76);color:#fff;font-size:calc(11px * var(--fz));font-weight:600;padding:5px 11px;border-radius:var(--r-pill);display:flex;align-items:center;gap:6px}
+.hero__n i{font-size:calc(13px * var(--fz))}
+.pdhead__top{display:flex;align-items:center;gap:10px;margin-bottom:10px;min-width:0}
+.pdhead__id{margin-left:auto;flex:none;font-size:calc(11.5px * var(--fz));color:var(--ink-3);font-weight:600}
+.chipst{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:var(--r-pill);font-size:calc(11.5px * var(--fz));font-weight:700;min-width:0}
+.chipst i{font-size:calc(14px * var(--fz));flex:none}
+.chipst--ok{background:var(--green-tint);color:var(--ok)}
+.chipst--run{background:var(--amber-tint);color:var(--warn)}
+.pdhead__t{margin:0;font-size:calc(18px * var(--fz));font-weight:700;line-height:1.3;letter-spacing:-.1px}
+.pdhead__m{margin:8px 0 0;font-size:calc(12px * var(--fz));color:var(--ink-3);display:flex;align-items:flex-start;gap:6px;line-height:1.45;min-width:0}
+.pdhead__m i{font-size:calc(14px * var(--fz));flex:none;margin-top:1px}
+.pdhead__foot{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;padding-top:13px;border-top:1px solid var(--line-2)}
+.pdhead__cell{min-width:0}
+.pdhead__cell small,.pdhead__org small{display:block;font-size:calc(10.5px * var(--fz));color:var(--ink-3);margin-bottom:3px}
+.pdhead__cell b,.pdhead__org b{display:block;font-size:calc(13px * var(--fz));font-weight:600;overflow-wrap:break-word}
+.pdhead__org{display:flex;gap:10px;align-items:center;margin-top:11px;padding:10px 12px;border-radius:12px;background:var(--line-2);min-width:0}
+.pdhead__org>i{font-size:calc(18px * var(--fz));color:var(--green);flex:none}
+.pdhead__org span{min-width:0}
 
-/* 2 · card có tiêu đề */
-.pdcard{margin:14px 16px 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);box-shadow:var(--shadow);overflow:hidden}
-.pdcard__hd{display:flex;align-items:center;gap:9px;padding:13px 16px;border-bottom:1px solid var(--line-2);font-size:calc(13.5px * var(--fz));font-weight:700;min-width:0}
-.pdcard__hd>i{font-size:calc(17px * var(--fz));color:var(--green);flex:none}
-.pdcard__hd em{margin-left:auto;flex:none;font-style:normal;font-size:calc(11px * var(--fz));font-weight:600;color:var(--ink-3)}
-.pdcard__bd{padding:14px 16px}
+/* nhãn mục + hộp nội dung — đọc một mạch từ trên xuống */
+.plabel{display:flex;align-items:baseline;gap:8px;margin:20px 16px 8px;font-size:calc(11px * var(--fz));font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--ink-3);min-width:0}
+.plabel em{font-style:normal;font-weight:700;color:var(--green)}
+.plabel small{margin-left:auto;flex:none;font-size:calc(10.5px * var(--fz));font-weight:600;letter-spacing:0;text-transform:none}
+.pbox{margin:0 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);box-shadow:var(--shadow);padding:14px 16px}
+.pbox--key{border:1.5px solid var(--green)}
+.pfrom{display:flex;gap:11px;align-items:center;margin-bottom:11px;padding-bottom:11px;border-bottom:1px solid var(--line-2);min-width:0}
+.pfrom__av{width:36px;height:36px;flex:none;border-radius:11px;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;padding:4px;overflow:hidden}
+.pfrom__av img{width:100%;height:100%;object-fit:contain}
+.pfrom__b{min-width:0}
+.pfrom__t{display:block;font-size:calc(12.5px * var(--fz));font-weight:600;line-height:1.35}
+.pfrom__d{display:block;font-size:calc(10.5px * var(--fz));color:var(--ink-3);margin-top:3px}
 
-/* cơ quan trả lời — nói rõ ai nói, nói khi nào */
-.org{display:flex;gap:11px;align-items:center;margin-bottom:11px;min-width:0}
-.org__av{width:38px;height:38px;flex:none;border-radius:11px;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;padding:4px;overflow:hidden}
-.org__av img{width:100%;height:100%;object-fit:contain}
-.org__b{min-width:0}
-.org__t{display:block;font-size:calc(13px * var(--fz));font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.org__d{display:block;font-size:calc(11px * var(--fz));color:var(--ink-3);margin-top:2px}
-
-/* văn bản dài: thu gọn 5 dòng */
+/* văn bản dài thu gọn 5 dòng */
 .clamp{font-size:calc(13px * var(--fz));line-height:1.6;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
 .clamp.open{-webkit-line-clamp:unset;display:block}
 .morebtn{margin-top:9px;font-size:calc(12.5px * var(--fz));font-weight:600;color:var(--green);display:flex;align-items:center;gap:5px}
 .morebtn i{font-size:calc(14px * var(--fz));transition:transform .2s}
 .morebtn.open i{transform:rotate(180deg)}
 
-/* 3 · dòng thời gian xử lý */
-.tl{display:block}
-.tl__i{display:flex;gap:12px;min-width:0;position:relative;padding-bottom:15px}
-.tl__i:last-child{padding-bottom:0}
-.tl__i::before{content:"";position:absolute;left:8px;top:21px;bottom:0;width:2px;background:var(--line)}
-.tl__i:last-child::before{display:none}
-.tl__d{width:18px;height:18px;flex:none;border-radius:50%;background:var(--line);display:grid;place-items:center;color:#fff;font-size:calc(10px * var(--fz));position:relative;z-index:1}
-.tl__i.done .tl__d{background:var(--ok)}
-.tl__i.wait .tl__d{background:var(--line);color:var(--ink-3)}
-.tl__b{min-width:0;flex:1;margin-top:-1px}
-.tl__t{display:block;font-size:calc(12.5px * var(--fz));font-weight:600;line-height:1.35}
-.tl__m{display:block;font-size:calc(10.5px * var(--fz));color:var(--ink-3);margin-top:3px}
+/* ý kiến bổ sung đã gửi */
+.pnote{display:flex;gap:10px;padding:10px 0;border-top:1px solid var(--line-2);min-width:0}
+.pnote:first-child{border-top:none;padding-top:0}
+.pnote>i{font-size:calc(15px * var(--fz));color:var(--green);flex:none;margin-top:2px}
+.pnote span{min-width:0;font-size:calc(12.5px * var(--fz));line-height:1.55;color:var(--ink-2)}
+.pnote small{display:block;font-size:calc(10.5px * var(--fz));color:var(--ink-3);margin-top:4px}
 
-/* 4 · đánh giá — bỏ bộ đếm, rõ là thao tác của chính mình */
+/* tab 2 — hồ sơ 2 bước x 6 trường */
+.stepcard{margin:14px 16px 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);box-shadow:var(--shadow);padding:14px 16px}
+.stepcard__h{display:flex;align-items:center;gap:9px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--line-2);min-width:0}
+.stepcard__n{width:24px;height:24px;flex:none;border-radius:50%;background:var(--green-tint);color:var(--green);display:grid;place-items:center;font-size:calc(11.5px * var(--fz));font-weight:700}
+.stepcard__t{font-size:calc(13.5px * var(--fz));font-weight:700;min-width:0}
+.stepcard__d{margin-left:auto;flex:none;font-size:calc(10.5px * var(--fz));color:var(--ink-3)}
+.kv{display:flex;gap:10px;font-size:calc(12px * var(--fz));padding:5px 0;min-width:0}
+.kv dt{flex:none;width:100px;color:var(--ink-3);margin:0}
+.kv dd{margin:0;min-width:0;flex:1;font-weight:500;overflow-wrap:break-word;line-height:1.45}
+.stepcard__x{margin:10px 0 0;padding:11px 12px;border-radius:10px;background:var(--line-2);font-size:calc(12px * var(--fz));line-height:1.55;color:var(--ink-2)}
+
+/* đánh giá */
 .rate{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .rate[hidden],.rated[hidden]{display:none}
 .rate button{display:flex;flex-direction:column;align-items:center;gap:7px;padding:14px 6px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);transition:.15s}
@@ -647,57 +803,36 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
 .rated>i{font-size:calc(24px * var(--fz));color:var(--ok);flex:none}
 .rated b{font-size:calc(13px * var(--fz));font-weight:600;min-width:0}
 .rated button{margin-left:auto;flex:none;font-size:calc(12px * var(--fz));font-weight:600;color:var(--green)}
-.pdcard__bd .hint{font-size:calc(11.5px * var(--fz));color:var(--ink-3);margin:10px 0 0;line-height:1.5}
 
-/* 5 · ảnh người dân gửi kèm */
-.shotwrap{position:relative;margin-bottom:13px}
-.shots{display:flex;gap:9px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
-.shots::-webkit-scrollbar{height:0}
-.shots img{width:134px;height:100px;flex:none;border-radius:12px;object-fit:cover;background:var(--line-2)}
-.shotcount{position:absolute;right:9px;top:9px;background:rgba(36,27,24,.74);color:#fff;font-size:calc(10.5px * var(--fz));font-weight:600;padding:4px 9px;border-radius:var(--r-pill);display:flex;align-items:center;gap:5px}
-.shotcount i{font-size:calc(12px * var(--fz))}
-.kv{display:flex;gap:10px;font-size:calc(12.5px * var(--fz));padding:9px 0;border-top:1px solid var(--line-2);min-width:0}
-.kv:first-child{border-top:none;padding-top:0}
-.kv dt{flex:none;width:86px;color:var(--ink-3);margin:0}
-.kv dd{margin:0;min-width:0;flex:1;font-weight:500;overflow-wrap:break-word}
-
-/* khối gập lại được */
-.fold__h{width:100%;display:flex;align-items:center;gap:9px;padding:13px 16px;font-size:calc(13.5px * var(--fz));font-weight:700;text-align:left;min-width:0}
-.fold__h>i:first-child{font-size:calc(17px * var(--fz));color:var(--green);flex:none}
-.fold__h .cv{margin-left:auto;flex:none;color:var(--ink-3);font-size:calc(16px * var(--fz));transition:transform .2s}
-.fold.open .fold__h .cv{transform:rotate(180deg)}
-.fold__c{display:none;padding:14px 16px;border-top:1px solid var(--line-2)}
-.fold.open .fold__c{display:block}
-
-/* 6 · trao đổi hai chiều */
-.bubs{display:flex;flex-direction:column;gap:11px;margin-bottom:13px}
-.bub{max-width:86%;padding:10px 13px;border-radius:14px;border-bottom-left-radius:5px;font-size:calc(12.5px * var(--fz));line-height:1.5;background:var(--line-2);color:var(--ink);align-self:flex-start;min-width:0;overflow-wrap:break-word}
-.bub--me{align-self:flex-end;background:var(--green-tint);border-bottom-left-radius:14px;border-bottom-right-radius:5px}
-.bub b{display:block;font-size:calc(10.5px * var(--fz));font-weight:700;color:var(--ink-2);margin-bottom:4px}
-.bub small{display:block;font-size:calc(10.5px * var(--fz));color:var(--ink-3);margin-top:5px}
+/* gửi ý kiến bổ sung */
 .composer__act{display:flex;align-items:center;gap:10px;margin-top:10px}
 .composer__act .attach{display:flex;align-items:center;gap:6px;font-size:calc(12.5px * var(--fz));font-weight:600;color:var(--green)}
 .composer__act .attach i{font-size:calc(16px * var(--fz))}
 .composer__act .btn{width:auto;margin-left:auto;padding:11px 20px}
+.phint{margin:9px 16px 0;font-size:calc(11.5px * var(--fz));color:var(--ink-3);line-height:1.5}
 
-/* liên kết xem cách bố cục còn lại */
-.altlink{display:flex;align-items:center;justify-content:center;gap:7px;margin:18px 16px 0;padding:12px;border-radius:var(--r-btn);border:1px dashed var(--line);color:var(--ink-3);font-size:calc(12px * var(--fz));font-weight:600;width:calc(100% - 32px)}
-.altlink i{font-size:calc(15px * var(--fz))}
-
-/* dòng thời gian hội thoại — cách bố cục B */
-.flow{padding:14px 16px 0}
-.flow__i{display:flex;gap:12px;position:relative;padding-bottom:15px;min-width:0}
-.flow__i::before{content:"";position:absolute;left:15px;top:36px;bottom:0;width:2px;background:var(--line)}
-.flow__i:last-child::before{display:none}
-.flow__av{width:32px;height:32px;flex:none;border-radius:10px;display:grid;place-items:center;font-size:calc(16px * var(--fz));position:relative;z-index:1;overflow:hidden;padding:0}
-.flow__av img{width:100%;height:100%;object-fit:contain;padding:3px;background:var(--surface)}
-.flow__b{min-width:0;flex:1}
-.flow__who{display:flex;align-items:baseline;gap:8px;min-width:0;margin-bottom:6px}
-.flow__who b{font-size:calc(12.5px * var(--fz));font-weight:700;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.flow__who small{font-size:calc(10.5px * var(--fz));color:var(--ink-3);flex:none;margin-left:auto}
-.flow__c{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;box-shadow:var(--shadow);font-size:calc(12.5px * var(--fz));line-height:1.55;color:var(--ink-2);min-width:0;overflow-wrap:break-word}
-.flow__c--soft{background:var(--line-2);border-color:transparent;box-shadow:none;color:var(--ink-3);font-size:calc(11.5px * var(--fz));padding:9px 12px}
-.flow__c .shots img{width:118px;height:88px}
+/* thanh hành động 4 nút — nằm ngoài vùng cuộn nên neo chắc ở cả hai tab */
+.actbar{position:absolute;left:0;right:0;bottom:calc(var(--nav-h) + var(--safe-b));z-index:35;
+  padding:16px 12px 12px;pointer-events:none;
+  background:linear-gradient(to top, var(--paper) 0%, var(--paper) 62%, transparent 100%)}
+.actbar[hidden]{display:none}
+.actbar__in{pointer-events:auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  background:var(--surface);border:1px solid var(--line);border-radius:18px;
+  box-shadow:0 12px 28px -12px rgba(60,24,16,.55);overflow:hidden}
+.qa{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:5px;
+  padding:11px 4px 10px;min-width:0;transition:background .15s}
+.qa+.qa{border-left:1px solid var(--line-2)}
+.qa i{font-size:calc(21px * var(--fz));color:var(--green);flex:none}
+.qa span{font-size:calc(10.5px * var(--fz));font-weight:600;color:var(--ink-2);line-height:1.2;text-align:center;overflow-wrap:break-word}
+.qa:active{background:var(--line-2)}
+.qa.on i,.qa.on span{color:var(--green-d)}
+.qa.on{background:var(--green-tint)}
+.qa.done i,.qa.done span{color:var(--ok)}
+/* chừa chỗ cho thanh hành động */
+#s-pa-detail-tl{padding-bottom:calc(var(--nav-h) + var(--safe-b) + 84px)}
+.flash{animation:flash 1.3s ease}
+@keyframes flash{0%{box-shadow:0 0 0 0 var(--green-tint)}30%{box-shadow:0 0 0 5px var(--green-tint)}100%{box-shadow:var(--shadow)}}
+@media (prefers-reduced-motion:reduce){.flash{animation:none}}
 </style>
 </head>
 <body>
@@ -821,7 +956,7 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
       <div class="sec__head"><h2>Tin tức video</h2><button class="sec__more" onclick="go('s-tintuc')">Xem thêm <i class="ph ph-arrow-right"></i></button></div>
       <div class="videorow">
         <button class="vcard" onclick="toast('Đang mở video tuyên truyền')"><img src="https://picsum.photos/seed/daklak-drone-city/480/300" alt=""><span class="play"><i class="ph-fill ph-play-circle"></i></span><span class="cap">Diện mạo đô thị Buôn Ma Thuột sau 20 năm</span></button>
-        <button class="vcard" onclick="toast('Đang mở video tuyên truyền')"><img src="https://picsum.photos/seed/coffee-harvest-clip/480/300" alt=""><span class="play"><i class="ph-fill ph-play-circle"></i></span><span class="cap">Vào vụ cà phê ở Cư M'gar</span></button>
+        <button class="vcard" onclick="toast('Đang mở video tuyên truyền')"><img src="https://picsum.photos/seed/coffee-harvest-clip/480/300" alt=""><span class="play"><i class="ph-fill ph-play-circle"></i></span><span class="cap">Vào vụ cà phê ở Cư M’gar</span></button>
       </div>
     </div>
   </section>
@@ -835,23 +970,23 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
     </header>
     <p class="grouplabel">Y tế</p>
     <div class="list" style="margin:0 16px">
-      <button class="li" onclick="toast('Cơ sở khám chữa bệnh gần bạn')"><span class="li__ic t-terra"><i class="ph-fill ph-hospital"></i></span><span class="li__b"><span class="li__t">Cơ sở khám chữa bệnh</span><span class="li__d">Tên, địa chỉ · tích hợp bản đồ chỉ đường</span></span><i class="ph ph-caret-right li__chev"></i></button>
+      <button class="li" onclick="go('s-yte')"><span class="li__ic t-terra"><i class="ph-fill ph-hospital"></i></span><span class="li__b"><span class="li__t">Cơ sở khám chữa bệnh</span><span class="li__d">Tên, địa chỉ · tích hợp bản đồ chỉ đường</span></span><i class="ph ph-caret-right li__chev"></i></button>
       <button class="li" onclick="toast('Danh sách nhà thuốc')"><span class="li__ic t-terra"><i class="ph-fill ph-pill"></i></span><span class="li__b"><span class="li__t">Nhà thuốc</span><span class="li__d">Nhà thuốc đạt chuẩn GPP trên địa bàn</span></span><i class="ph ph-caret-right li__chev"></i></button>
       <button class="li" onclick="toast('Cơ sở tiêm chủng')"><span class="li__ic t-terra"><i class="ph-fill ph-syringe"></i></span><span class="li__b"><span class="li__t">Cơ sở tiêm chủng</span><span class="li__d">Điểm tiêm chủng mở rộng và dịch vụ</span></span><i class="ph ph-caret-right li__chev"></i></button>
     </div>
     <p class="grouplabel">Giáo dục</p>
     <div class="list" style="margin:0 16px">
-      <button class="li" onclick="toast('Danh bạ trường học')"><span class="li__ic t-amber"><i class="ph-fill ph-student"></i></span><span class="li__b"><span class="li__t">Trường học các cấp</span><span class="li__d">Tên, địa chỉ · chỉ đường</span></span><i class="ph ph-caret-right li__chev"></i></button>
+      <button class="li" onclick="go('s-giaoduc')"><span class="li__ic t-amber"><i class="ph-fill ph-student"></i></span><span class="li__b"><span class="li__t">Trường học các cấp</span><span class="li__d">Tên, địa chỉ · chỉ đường</span></span><i class="ph ph-caret-right li__chev"></i></button>
       <button class="li" onclick="toast('Trung tâm ngoại ngữ')"><span class="li__ic t-amber"><i class="ph-fill ph-translate"></i></span><span class="li__b"><span class="li__t">Trung tâm ngoại ngữ</span><span class="li__d">Trung tâm được cấp phép hoạt động</span></span><i class="ph ph-caret-right li__chev"></i></button>
       <button class="li" onclick="toast('Tra cứu điểm thi')"><span class="li__ic t-amber"><i class="ph-fill ph-exam"></i></span><span class="li__b"><span class="li__t">Tra cứu điểm thi</span><span class="li__d">Vào lớp 10 · Tốt nghiệp THPT</span></span><i class="ph ph-caret-right li__chev"></i></button>
       <button class="li" onclick="toast('Thông tin tuyển sinh')"><span class="li__ic t-amber"><i class="ph-fill ph-chalkboard-teacher"></i></span><span class="li__b"><span class="li__t">Thông tin tuyển sinh</span><span class="li__d">Kế hoạch tuyển sinh đầu cấp năm học mới</span></span><i class="ph ph-caret-right li__chev"></i></button>
     </div>
     <p class="grouplabel">Du lịch</p>
     <div class="list" style="margin:0 16px">
-      <button class="li" onclick="toast('Địa điểm du lịch')"><span class="li__ic t-green"><i class="ph-fill ph-mountains"></i></span><span class="li__b"><span class="li__t">Địa điểm du lịch</span><span class="li__d">Thác Dray Nur, hồ Lắk, Buôn Đôn…</span></span><i class="ph ph-caret-right li__chev"></i></button>
-      <button class="li" onclick="toast('Cơ sở lưu trú')"><span class="li__ic t-green"><i class="ph-fill ph-bed"></i></span><span class="li__b"><span class="li__t">Cơ sở lưu trú</span><span class="li__d">Khách sạn, homestay đã xếp hạng</span></span><i class="ph ph-caret-right li__chev"></i></button>
+      <button class="li" onclick="go('s-dulich')"><span class="li__ic t-green"><i class="ph-fill ph-mountains"></i></span><span class="li__b"><span class="li__t">Địa điểm du lịch</span><span class="li__d">Thác Dray Nur, hồ Lắk, Buôn Đôn…</span></span><i class="ph ph-caret-right li__chev"></i></button>
+      <button class="li" onclick="go('s-luutru')"><span class="li__ic t-green"><i class="ph-fill ph-bed"></i></span><span class="li__b"><span class="li__t">Cơ sở lưu trú</span><span class="li__d">Khách sạn, homestay đã xếp hạng</span></span><i class="ph ph-caret-right li__chev"></i></button>
       <button class="li" onclick="toast('Ẩm thực địa phương')"><span class="li__ic t-green"><i class="ph-fill ph-fork-knife"></i></span><span class="li__b"><span class="li__t">Ẩm thực địa phương</span><span class="li__d">Đặc sản Tây Nguyên</span></span><i class="ph ph-caret-right li__chev"></i></button>
-      <button class="li" onclick="toast('Thưởng thức cà phê Đắk Lắk')"><span class="li__ic t-terra"><i class="ph-fill ph-coffee"></i></span><span class="li__b"><span class="li__t">Thưởng thức cà phê Đắk Lắk</span><span class="li__d">Bản đồ quán và vùng nguyên liệu</span></span><i class="ph ph-caret-right li__chev"></i></button>
+      <button class="li" onclick="go('s-cafe')"><span class="li__ic t-terra"><i class="ph-fill ph-coffee"></i></span><span class="li__b"><span class="li__t">Thưởng thức cà phê Đắk Lắk</span><span class="li__d">Bản đồ quán và vùng nguyên liệu</span></span><i class="ph ph-caret-right li__chev"></i></button>
     </div>
     <p class="grouplabel">An ninh · Trật tự</p>
     <div class="list" style="margin:0 16px 20px">
@@ -879,7 +1014,7 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
       <div class="sec__head"><h2>Phản ánh của tôi</h2></div>
       <div class="list">
         <button class="li" onclick="go('s-pa-detail-tl')"><span class="li__ic" style="background:var(--amber-tint);color:var(--warn)"><i class="ph-fill ph-hourglass-medium"></i></span><span class="li__b"><span class="li__t">Đèn chiếu sáng hỏng đường Nguyễn Tất Thành</span><span class="li__d">Đang xử lý · phường Tân Lập · mã PA-24817</span></span><i class="ph ph-caret-right li__chev"></i></button>
-        <button class="li" onclick="go('s-pa-detail')"><span class="li__ic" style="background:var(--green-tint);color:var(--ok)"><i class="ph-fill ph-check-circle"></i></span><span class="li__b"><span class="li__t">Đổ rác không đúng nơi quy định chợ Ea Tam</span><span class="li__d">Đã xử lý · phường Ea Tam · mã PA-24655</span></span><i class="ph ph-caret-right li__chev"></i></button>
+        <button class="li" onclick="go('s-pa-detail-tl')"><span class="li__ic" style="background:var(--green-tint);color:var(--ok)"><i class="ph-fill ph-check-circle"></i></span><span class="li__b"><span class="li__t">Rác gây ô nhiễm môi trường, thôn Long Bình</span><span class="li__d">Đã xử lý · xã Tuy An Bắc · mã #1982884</span></span><i class="ph ph-caret-right li__chev"></i></button>
       </div>
     </div>
   </section>
@@ -1030,7 +1165,7 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
       <div class="sec__head"><h2>Clip tuyên truyền</h2></div>
       <div class="videorow">
         <button class="vcard" onclick="toast('Đang mở clip')"><img src="https://picsum.photos/seed/daklak-drone-city/480/300" alt=""><span class="play"><i class="ph-fill ph-play-circle"></i></span><span class="cap">Diện mạo đô thị Buôn Ma Thuột</span></button>
-        <button class="vcard" onclick="toast('Đang mở clip')"><img src="https://picsum.photos/seed/coffee-harvest-clip/480/300" alt=""><span class="play"><i class="ph-fill ph-play-circle"></i></span><span class="cap">Vào vụ cà phê ở Cư M'gar</span></button>
+        <button class="vcard" onclick="toast('Đang mở clip')"><img src="https://picsum.photos/seed/coffee-harvest-clip/480/300" alt=""><span class="play"><i class="ph-fill ph-play-circle"></i></span><span class="cap">Vào vụ cà phê ở Cư M’gar</span></button>
       </div>
     </div>
     <div class="sec">
@@ -1323,217 +1458,70 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
   </div>
 
 
-  <!-- ==================== CHI TIẾT PHẢN ÁNH · bố cục A (thẻ theo khối) ==================== -->
-  <section class="screen" id="s-pa-detail">
-    <header class="subhdr">
-      <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
-      <h1>Chi tiết phản ánh</h1>
-      <div class="sp">
-        <button class="back" onclick="toast('Chia sẻ phản ánh #1982884')" aria-label="Chia sẻ"><i class="ph ph-share-network"></i></button>
-        <button class="back aabtn" onclick="toggleKit()" aria-label="Cài đặt hiển thị" aria-expanded="false"><i class="ph ph-gear-six"></i></button>
-      </div>
-    </header>
-
-    <!-- 1 · trạng thái: khối nổi bật nhất, trả lời ngay câu "xong chưa" -->
-    <div class="pdstat">
-      <div class="pdstat__top">
-        <span class="pdstat__ic"><i class="ph-fill ph-check-circle"></i></span>
-        <span class="pdstat__b">
-          <span class="pdstat__t">Đã xử lý xong</span>
-          <span class="pdstat__d">Hoàn thành 05/10/2026 · sau 3 ngày kể từ khi gửi</span>
-        </span>
-      </div>
-      <div class="pdstat__org"><i class="ph-fill ph-buildings"></i> Đơn vị xử lý: <b>UBND xã Tuy An Bắc</b></div>
-      <div class="steps">
-        <span class="step done"><i class="ph ph-check"></i><span>Tiếp nhận</span></span>
-        <span class="step done"><i class="ph ph-check"></i><span>Phân công</span></span>
-        <span class="step done"><i class="ph ph-check"></i><span>Đang xử lý</span></span>
-        <span class="step done"><i class="ph ph-check"></i><span>Hoàn thành</span></span>
-      </div>
-    </div>
-
-    <!-- 2 · kết quả xử lý: đưa lên trước nội dung gốc -->
-    <div class="pdcard">
-      <div class="pdcard__hd"><i class="ph-fill ph-seal-check"></i> Kết quả xử lý</div>
-      <div class="pdcard__bd">
-        <div class="org">
-          <span class="org__av"><img class="org-logo" alt=""></span>
-          <span class="org__b">
-            <span class="org__t">UBND xã Tuy An Bắc</span>
-            <span class="org__d">Trả lời lúc 16:40 · 05/10/2026</span>
-          </span>
-        </div>
-        <p class="clamp" id="pa-reply">UBND xã Tuy An Bắc đã kiểm tra thực tế tại khu vực thôn Long Bình. Xã đã chỉ đạo Tổ vệ sinh môi trường thu gom toàn bộ lượng rác tồn đọng trong ngày 04/10/2026, đồng thời vận động các hộ dân phía sau đăng ký dịch vụ thu gom rác định kỳ. Điểm tập kết tạm sẽ được di dời ra khỏi khu dân cư trước ngày 20/10/2026. Rất mong Quý công dân tiếp tục phối hợp và đồng hành trong công tác bảo vệ môi trường. Trân trọng cảm ơn Ông/Bà.</p>
-        <button class="morebtn" onclick="toggleClamp(this,'pa-reply')">Xem thêm <i class="ph ph-caret-down"></i></button>
-      </div>
-    </div>
-
-    <!-- 3 · quá trình xử lý hiện luôn, không bắt bấm sang màn khác -->
-    <div class="pdcard">
-      <div class="pdcard__hd"><i class="ph-fill ph-list-checks"></i> Quá trình xử lý <em>4 bước</em></div>
-      <div class="pdcard__bd">
-        <div class="tl">
-          <div class="tl__i done"><span class="tl__d"><i class="ph ph-check"></i></span><span class="tl__b"><span class="tl__t">Tiếp nhận phản ánh</span><span class="tl__m">02/10/2026 09:10 · Bộ phận một cửa xã Tuy An Bắc</span></span></div>
-          <div class="tl__i done"><span class="tl__d"><i class="ph ph-check"></i></span><span class="tl__b"><span class="tl__t">Phân công Tổ vệ sinh môi trường</span><span class="tl__m">02/10/2026 14:25 · Hạn xử lý 09/10/2026</span></span></div>
-          <div class="tl__i done"><span class="tl__d"><i class="ph ph-check"></i></span><span class="tl__b"><span class="tl__t">Kiểm tra hiện trường, thu gom rác tồn đọng</span><span class="tl__m">04/10/2026 07:30</span></span></div>
-          <div class="tl__i done"><span class="tl__d"><i class="ph ph-check"></i></span><span class="tl__b"><span class="tl__t">Hoàn thành và trả kết quả</span><span class="tl__m">05/10/2026 16:40 · trước hạn 4 ngày</span></span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4 · đánh giá: ba nút, không kèm bộ đếm -->
-    <div class="pdcard">
-      <div class="pdcard__hd"><i class="ph-fill ph-star"></i> Bạn đánh giá kết quả này thế nào?</div>
-      <div class="pdcard__bd">
-        <div class="rate" id="pa-rate">
-          <button aria-pressed="false" onclick="rate(this,'Rất hài lòng')"><i class="ph ph-smiley"></i><span>Rất hài lòng</span></button>
-          <button aria-pressed="false" onclick="rate(this,'Hài lòng')"><i class="ph ph-smiley-meh"></i><span>Hài lòng</span></button>
-          <button aria-pressed="false" onclick="rate(this,'Chưa hài lòng')"><i class="ph ph-smiley-sad"></i><span>Chưa hài lòng</span></button>
-        </div>
-        <div class="rated" id="pa-rated" hidden>
-          <i class="ph-fill ph-check-circle"></i>
-          <b>Bạn đã đánh giá: <span id="pa-rated-v"></span></b>
-          <button onclick="rateAgain()">Sửa</button>
-        </div>
-        <p class="hint" style="margin-top:10px">Đánh giá của bạn được gửi tới đơn vị xử lý và cơ quan theo dõi.</p>
-      </div>
-    </div>
-
-    <!-- 5 · nội dung người dân đã gửi, gập lại vì người gửi đã biết mình viết gì -->
-    <div class="pdcard fold open" id="pa-sent">
-      <button class="fold__h" onclick="toggleFold('pa-sent')">
-        <i class="ph-fill ph-paper-plane-tilt"></i> Nội dung bạn đã gửi <i class="ph ph-caret-down cv"></i>
-      </button>
-      <div class="fold__c">
-        <div class="shotwrap">
-          <div class="shots"><img src="https://picsum.photos/seed/daklak-rac-1/400/300" alt="Ảnh phản ánh 1" loading="lazy"><img src="https://picsum.photos/seed/daklak-rac-2/400/300" alt="Ảnh phản ánh 2" loading="lazy"><img src="https://picsum.photos/seed/daklak-rac-3/400/300" alt="Ảnh phản ánh 3" loading="lazy"></div>
-          <span class="shotcount"><i class="ph-fill ph-images"></i> 3 ảnh</span>
-        </div>
-        <dl style="margin:0">
-          <div class="kv"><dt>Tiêu đề</dt><dd>Rác gây ô nhiễm môi trường</dd></div>
-          <div class="kv"><dt>Lĩnh vực</dt><dd>Môi trường</dd></div>
-          <div class="kv"><dt>Vị trí</dt><dd>Thôn Long Bình, xã Tuy An Bắc, tỉnh Đắk Lắk <button class="sec__more" style="display:inline-flex;margin-left:4px" onclick="toast('Mở vị trí trên bản đồ')">Xem bản đồ <i class="ph ph-caret-right"></i></button></dd></div>
-          <div class="kv"><dt>Mã phản ánh</dt><dd>#1982884</dd></div>
-          <div class="kv"><dt>Thời gian gửi</dt><dd>02/10/2026 07:22</dd></div>
-        </dl>
-        <p class="clamp" id="pa-content" style="margin:11px 0 0">rác thải người dân phía sau tự dồn tập kết bãi trước nhà người dân gây ô nhiễm, sát góc nhà karaoke bảo hân - thôn long bình, nhờ cấp chính quyền xã vận động người dân phía sau đóng tiền rác để xe tới tận nơi thu gom rác đi đổ hoặc di dời điểm bãi tập kết rác thải cách xa nhà người dân xung quanh ra xa, chứ rác thải bay mùi hôi không chịu được, xóm toàn người già và trẻ con rất nhiều, cũng nhờ chính quyền xã giải quyết dùm cho chúng tôi, chúng tôi xin cảm ơn</p>
-        <button class="morebtn" onclick="toggleClamp(this,'pa-content')">Xem thêm <i class="ph ph-caret-down"></i></button>
-      </div>
-    </div>
-
-    <!-- 6 · trao đổi: hiện hội thoại đã có, không chỉ một ô trống -->
-    <div class="pdcard">
-      <div class="pdcard__hd"><i class="ph-fill ph-chats-circle"></i> Trao đổi với đơn vị xử lý</div>
-      <div class="pdcard__bd">
-        <div class="bubs">
-          <span class="bub"><b>UBND xã Tuy An Bắc</b>Xã đã nhận phản ánh, nhờ anh/chị cho biết thêm điểm tập kết nằm cách nhà bao xa ạ?<small>02/10/2026 10:05</small></span>
-          <span class="bub bub--me">Khoảng 15 mét, ngay sát hông nhà tôi.<small>02/10/2026 10:31</small></span>
-          <span class="bub"><b>UBND xã Tuy An Bắc</b>Xã ghi nhận, sẽ cử tổ môi trường kiểm tra trong tuần này.<small>02/10/2026 11:12</small></span>
-        </div>
-        <textarea class="textarea" style="min-height:70px" placeholder="Nhập nội dung trao đổi…"></textarea>
-        <div class="composer__act">
-          <button class="attach" onclick="toast('Đang mở thư viện ảnh')"><i class="ph ph-paperclip"></i> Đính kèm</button>
-          <button class="btn btn--pri" onclick="toast('Đã gửi nội dung trao đổi')"><i class="ph ph-paper-plane-tilt"></i> Gửi</button>
-        </div>
-      </div>
-    </div>
-
-    <button class="altlink" onclick="go('s-pa-detail-tl')"><i class="ph ph-arrows-left-right"></i> Xem cách bố cục B · dòng thời gian</button>
-  </section>
-
-  <!-- ==================== CHI TIẾT PHẢN ÁNH · bố cục B (dòng thời gian) ==================== -->
+  <!-- ==================== CHI TIẾT PHẢN ÁNH ==================== -->
   <section class="screen" id="s-pa-detail-tl">
-    <header class="subhdr">
-      <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
-      <h1>Chi tiết phản ánh</h1>
-      <div class="sp">
-        <button class="back" onclick="toast('Chia sẻ phản ánh #1982884')" aria-label="Chia sẻ"><i class="ph ph-share-network"></i></button>
-        <button class="back aabtn" onclick="toggleKit()" aria-label="Cài đặt hiển thị" aria-expanded="false"><i class="ph ph-gear-six"></i></button>
+    <header class="subhdr subhdr--tabs">
+      <div class="subhdr__row">
+        <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
+        <h1>Chi tiết phản ánh</h1>
+        <div class="sp">
+          <button class="back aabtn" onclick="toggleKit()" aria-label="Cài đặt hiển thị" aria-expanded="false"><i class="ph ph-gear-six"></i></button>
+        </div>
+      </div>
+      <div class="ntabs" id="patabs">
+        <button class="ntab on" data-pane="pa-pane-1">Nội dung &amp; kết quả</button>
+        <button class="ntab" data-pane="pa-pane-2">Các bước xử lý</button>
       </div>
     </header>
 
-    <div class="pdstat">
-      <div class="pdstat__top">
-        <span class="pdstat__ic"><i class="ph-fill ph-check-circle"></i></span>
-        <span class="pdstat__b">
-          <span class="pdstat__t">Đã xử lý xong</span>
-          <span class="pdstat__d">Rác gây ô nhiễm môi trường · #1982884 · Môi trường</span>
-        </span>
+    <!-- ========== TAB 1 ========== -->
+    <div id="pa-pane-1">
+      <div class="pdhead">
+        <div class="hero">
+          <div class="hero__strip" id="pa-hero"><img src="https://picsum.photos/seed/daklak-rac-1/800/600" alt="Ảnh phản ánh 1" loading="lazy"><img src="https://picsum.photos/seed/daklak-rac-2/800/600" alt="Ảnh phản ánh 2" loading="lazy"><img src="https://picsum.photos/seed/daklak-rac-3/800/600" alt="Ảnh phản ánh 3" loading="lazy"></div>
+          <span class="hero__n"><i class="ph-fill ph-images"></i><span><b id="pa-hero-n">1</b>/3</span></span>
+        </div>
+        <div class="pdhead__bd">
+          <div class="pdhead__top">
+            <span class="chipst chipst--ok"><i class="ph-fill ph-check-circle"></i> Đã xử lý</span>
+            <span class="pdhead__id">#1982884</span>
+          </div>
+          <h2 class="pdhead__t">Rác gây ô nhiễm môi trường</h2>
+          <p class="pdhead__m"><i class="ph-fill ph-map-pin"></i> Thôn Long Bình, xã Tuy An Bắc · lĩnh vực Môi trường</p>
+          <div class="pdhead__foot">
+            <span class="pdhead__cell"><small>Ngày gửi</small><b>02/10/2026</b></span>
+            <span class="pdhead__cell"><small>Ngày hoàn thành</small><b>05/10/2026</b></span>
+          </div>
+          <div class="pdhead__org"><i class="ph-fill ph-buildings"></i><span><small>Đơn vị xử lý</small><b>Tổ xử lý phản ánh hiện trường xã Tuy An Bắc</b></span></div>
+        </div>
       </div>
-      <div class="pdstat__org"><i class="ph-fill ph-buildings"></i> <b>UBND xã Tuy An Bắc</b> · hoàn thành 05/10/2026</div>
-    </div>
 
-    <div class="grouplabel">Diễn biến phản ánh</div>
-    <div class="flow">
-      <div class="flow__i">
-        <span class="flow__av t-green"><i class="ph-fill ph-user"></i></span>
-        <span class="flow__b">
-          <span class="flow__who"><b>Bạn đã gửi phản ánh</b><small>02/10 · 07:22</small></span>
-          <span class="flow__c">
-            <span class="shotwrap" style="display:block">
-              <span class="shots" style="display:flex"><img src="https://picsum.photos/seed/daklak-rac-1/400/300" alt="Ảnh phản ánh 1" loading="lazy"><img src="https://picsum.photos/seed/daklak-rac-2/400/300" alt="Ảnh phản ánh 2" loading="lazy"><img src="https://picsum.photos/seed/daklak-rac-3/400/300" alt="Ảnh phản ánh 3" loading="lazy"></span>
-              <span class="shotcount"><i class="ph-fill ph-images"></i> 3 ảnh</span>
-            </span>
-            <span style="display:flex;align-items:center;gap:6px;color:var(--ink-3);font-size:calc(11.5px * var(--fz));margin-bottom:8px"><i class="ph-fill ph-map-pin"></i> Thôn Long Bình, xã Tuy An Bắc</span>
-            <span class="clamp" id="tl-content">rác thải người dân phía sau tự dồn tập kết bãi trước nhà người dân gây ô nhiễm, sát góc nhà karaoke bảo hân - thôn long bình, nhờ cấp chính quyền xã vận động người dân phía sau đóng tiền rác để xe tới tận nơi thu gom rác đi đổ hoặc di dời điểm bãi tập kết rác thải cách xa nhà người dân xung quanh ra xa, chứ rác thải bay mùi hôi không chịu được, xóm toàn người già và trẻ con rất nhiều, cũng nhờ chính quyền xã giải quyết dùm cho chúng tôi, chúng tôi xin cảm ơn</span>
+      <div class="plabel">Bạn phản ánh <small>02/10/2026 07:22</small></div>
+      <div class="pbox">
+        <p class="clamp" id="tl-content" style="margin:0">rác thải người dân phía sau tự dồn tập kết bãi trước nhà người dân gây ô nhiễm, sát góc nhà karaoke bảo hân - thôn long bình, nhờ cấp chính quyền xã vận động người dân phía sau đóng tiền rác để xe tới tận nơi thu gom rác đi đổ hoặc di dời điểm bãi tập kết rác thải cách xa nhà người dân xung quanh ra xa, chứ rác thải bay mùi hôi không chịu được, xóm toàn người già và trẻ con rất nhiều, cũng nhờ chính quyền xã giải quyết dùm cho chúng tôi, chúng tôi xin cảm ơn</p>
+        <button class="morebtn" onclick="toggleClamp(this,'tl-content')">Xem thêm <i class="ph ph-caret-down"></i></button>
+      </div>
+
+      <div class="plabel">Ý kiến bạn đã gửi thêm <em>1</em></div>
+      <div class="pbox">
+        <div class="pnote"><i class="ph-fill ph-note-pencil"></i><span>Điểm tập kết cách nhà tôi khoảng 15 mét, mong xã xử lý sớm giúp bà con.<small>02/10/2026 10:31</small></span></div>
+      </div>
+
+      <div class="plabel">Xã trả lời <small>05/10/2026 16:40</small></div>
+      <div class="pbox pbox--key">
+        <div class="pfrom">
+          <span class="pfrom__av"><img class="org-logo" alt=""></span>
+          <span class="pfrom__b">
+            <span class="pfrom__t">Tổ xử lý phản ánh hiện trường xã Tuy An Bắc</span>
+            <span class="pfrom__d">Kết quả xử lý chính thức · 05/10/2026 16:40</span>
           </span>
-          <button class="morebtn" onclick="toggleClamp(this,'tl-content')">Xem thêm <i class="ph ph-caret-down"></i></button>
-        </span>
+        </div>
+        <p class="clamp" id="tl-reply" style="margin:0">UBND xã Tuy An Bắc đã tiếp nhận phản ánh của công dân. Ngay sau khi nhận được phản ánh, UBND xã đã chỉ đạo Tổ xử lý phản ánh hiện trường xuống kiểm tra, khảo sát thực tế khu vực tập kết rác tại thôn Long Bình. Tổ vệ sinh môi trường đã thu gom toàn bộ lượng rác tồn đọng trong ngày 04/10/2026, đồng thời vận động các hộ dân phía sau đăng ký dịch vụ thu gom rác định kỳ. Điểm tập kết tạm sẽ được di dời ra khỏi khu dân cư trước ngày 20/10/2026. UBND xã thông tin đến Quý công dân được biết. Trân trọng cảm ơn./.</p>
+        <button class="morebtn" onclick="toggleClamp(this,'tl-reply')">Xem thêm <i class="ph ph-caret-down"></i></button>
       </div>
 
-      <div class="flow__i">
-        <span class="flow__av t-blue"><i class="ph-fill ph-tray-arrow-down"></i></span>
-        <span class="flow__b">
-          <span class="flow__who"><b>Xã tiếp nhận</b><small>02/10 · 09:10</small></span>
-          <span class="flow__c flow__c--soft">Bộ phận một cửa xã Tuy An Bắc tiếp nhận, hạn xử lý 09/10/2026.</span>
-        </span>
-      </div>
-
-      <div class="flow__i">
-        <span class="flow__av t-blue"><i class="ph-fill ph-chats-circle"></i></span>
-        <span class="flow__b">
-          <span class="flow__who"><b>UBND xã Tuy An Bắc</b><small>02/10 · 10:05</small></span>
-          <span class="flow__c">Xã đã nhận phản ánh, nhờ anh/chị cho biết thêm điểm tập kết nằm cách nhà bao xa ạ?</span>
-        </span>
-      </div>
-
-      <div class="flow__i">
-        <span class="flow__av t-green"><i class="ph-fill ph-user"></i></span>
-        <span class="flow__b">
-          <span class="flow__who"><b>Bạn trả lời</b><small>02/10 · 10:31</small></span>
-          <span class="flow__c" style="background:var(--green-tint);border-color:transparent">Khoảng 15 mét, ngay sát hông nhà tôi.</span>
-        </span>
-      </div>
-
-      <div class="flow__i">
-        <span class="flow__av t-amber"><i class="ph-fill ph-wrench"></i></span>
-        <span class="flow__b">
-          <span class="flow__who"><b>Đang xử lý</b><small>04/10 · 07:30</small></span>
-          <span class="flow__c flow__c--soft">Tổ vệ sinh môi trường kiểm tra hiện trường và thu gom toàn bộ rác tồn đọng.</span>
-        </span>
-      </div>
-
-      <div class="flow__i">
-        <span class="flow__av"><img class="org-logo" alt=""></span>
-        <span class="flow__b">
-          <span class="flow__who"><b>UBND xã Tuy An Bắc trả lời</b><small>05/10 · 16:40</small></span>
-          <span class="flow__c"><span class="clamp" id="tl-reply">UBND xã Tuy An Bắc đã kiểm tra thực tế tại khu vực thôn Long Bình. Xã đã chỉ đạo Tổ vệ sinh môi trường thu gom toàn bộ lượng rác tồn đọng trong ngày 04/10/2026, đồng thời vận động các hộ dân phía sau đăng ký dịch vụ thu gom rác định kỳ. Điểm tập kết tạm sẽ được di dời ra khỏi khu dân cư trước ngày 20/10/2026. Rất mong Quý công dân tiếp tục phối hợp và đồng hành trong công tác bảo vệ môi trường. Trân trọng cảm ơn Ông/Bà.</span></span>
-          <button class="morebtn" onclick="toggleClamp(this,'tl-reply')">Xem thêm <i class="ph ph-caret-down"></i></button>
-        </span>
-      </div>
-
-      <div class="flow__i">
-        <span class="flow__av t-green"><i class="ph-fill ph-check-circle"></i></span>
-        <span class="flow__b">
-          <span class="flow__who"><b>Hoàn thành</b><small>05/10 · 16:40</small></span>
-          <span class="flow__c flow__c--soft">Phản ánh được xử lý xong, trước hạn 4 ngày.</span>
-        </span>
-      </div>
-    </div>
-
-    <div class="pdcard">
-      <div class="pdcard__hd"><i class="ph-fill ph-star"></i> Bạn đánh giá kết quả này thế nào?</div>
-      <div class="pdcard__bd">
+      <div class="plabel">Mức độ hài lòng</div>
+      <div class="pbox">
         <div class="rate" id="tl-rate">
           <button aria-pressed="false" onclick="rate(this,'Rất hài lòng')"><i class="ph ph-smiley"></i><span>Rất hài lòng</span></button>
           <button aria-pressed="false" onclick="rate(this,'Hài lòng')"><i class="ph ph-smiley-meh"></i><span>Hài lòng</span></button>
@@ -1545,19 +1533,432 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
           <button onclick="rateAgain()">Sửa</button>
         </div>
       </div>
-    </div>
 
-    <div class="pdcard">
-      <div class="pdcard__bd">
-        <textarea class="textarea" style="min-height:70px" placeholder="Trao đổi thêm với đơn vị xử lý…"></textarea>
+      <div class="plabel">Gửi ý kiến bổ sung</div>
+      <div class="pbox">
+        <textarea class="textarea" style="min-height:70px" placeholder="Nhập ý kiến, thông tin bổ sung cho phản ánh này…"></textarea>
         <div class="composer__act">
           <button class="attach" onclick="toast('Đang mở thư viện ảnh')"><i class="ph ph-paperclip"></i> Đính kèm</button>
-          <button class="btn btn--pri" onclick="toast('Đã gửi nội dung trao đổi')"><i class="ph ph-paper-plane-tilt"></i> Gửi</button>
+          <button class="btn btn--pri" onclick="toast('Đã gửi ý kiến bổ sung vào hồ sơ phản ánh')"><i class="ph ph-paper-plane-tilt"></i> Gửi</button>
+        </div>
+      </div>
+      <p class="phint">Ý kiến của bạn được ghi nhận vào hồ sơ phản ánh. Đơn vị xử lý trả lời bằng kết quả xử lý, không trao đổi trực tiếp tại đây.</p>
+    </div>
+
+    <!-- ========== TAB 2 ========== -->
+    <div id="pa-pane-2" hidden>
+      <div class="stepcard">
+        <div class="stepcard__h">
+          <span class="stepcard__n">1</span>
+          <span class="stepcard__t">Tiếp nhận</span>
+          <span class="stepcard__d">02/10 · 09:10</span>
+        </div>
+        <dl style="margin:0">
+          <div class="kv"><dt>Công việc</dt><dd>Điều phối</dd></div>
+          <div class="kv"><dt>Đơn vị</dt><dd>Trung tâm Giám sát, điều hành đô thị thông minh</dd></div>
+          <div class="kv"><dt>Ngày tiếp nhận</dt><dd>02/10/2026 07:22</dd></div>
+          <div class="kv"><dt>Ngày chuyển</dt><dd>02/10/2026 09:10</dd></div>
+        </dl>
+        <p class="stepcard__x">Dak Lak IOC chuyển Tổ xử lý phản ánh hiện trường xã Tuy An Bắc kiểm tra và xử lý.</p>
+      </div>
+      <div class="stepcard">
+        <div class="stepcard__h">
+          <span class="stepcard__n">2</span>
+          <span class="stepcard__t">Xử lý</span>
+          <span class="stepcard__d">05/10 · 16:40</span>
+        </div>
+        <dl style="margin:0">
+          <div class="kv"><dt>Công việc</dt><dd>Xử lý</dd></div>
+          <div class="kv"><dt>Đơn vị</dt><dd>Tổ xử lý phản ánh hiện trường xã Tuy An Bắc</dd></div>
+          <div class="kv"><dt>Ngày tiếp nhận</dt><dd>02/10/2026 09:10</dd></div>
+          <div class="kv"><dt>Ngày chuyển</dt><dd>05/10/2026 16:40</dd></div>
+        </dl>
+        <p class="stepcard__x">Đã kiểm tra hiện trường, thu gom toàn bộ rác tồn đọng và vận động các hộ dân đăng ký dịch vụ thu gom định kỳ. Hoàn thành trước hạn 4 ngày.</p>
+      </div>
+      <p class="phint">Hồ sơ xử lý do các đơn vị cập nhật trên hệ thống, chỉ để tra cứu.</p>
+    </div>
+
+  </section>
+
+  <!-- Thanh hành động của màn Chi tiết phản ánh -->
+  <div class="actbar" id="pa-actbar" hidden>
+    <div class="actbar__in">
+      <button class="qa" id="qa-rate" onclick="goRate()"><i class="ph-fill ph-star"></i><span>Đánh giá</span></button>
+      <button class="qa" id="qa-say" onclick="goSay()"><i class="ph-fill ph-note-pencil"></i><span>Gửi ý kiến</span></button>
+      <button class="qa" id="qa-steps" onclick="goSteps()"><i class="ph-fill ph-list-checks"></i><span>Quá trình</span></button>
+      <button class="qa" onclick="toast('Chia sẻ phản ánh #1982884')"><i class="ph-fill ph-share-network"></i><span>Chia sẻ</span></button>
+    </div>
+  </div>
+
+  <!-- ==================== ĐIỂM DU LỊCH ==================== -->
+  <section class="screen" id="s-dulich">
+    <header class="subhdr subhdr--tabs">
+      <div class="subhdr__row">
+        <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
+        <h1>Điểm du lịch</h1>
+        <div class="sp"><button class="back aabtn" onclick="toggleKit()" aria-label="Cài đặt hiển thị" aria-expanded="false"><i class="ph ph-gear-six"></i></button></div>
+      </div>
+    </header>
+    <button class="searchbar" onclick="toast('Tìm điểm du lịch…')"><i class="ph ph-magnifying-glass"></i><span>Tìm điểm du lịch…</span></button>
+    <div class="pad-b pgrid">
+      <button class="pcard" onclick="toast('Bãi Xép')">
+        <img class="pcard__ph" src="https://picsum.photos/seed/daklak-bai-xep/720/540" alt="" loading="lazy">
+        <span class="pcard__veil"></span>
+        <span class="pcard__b">
+          <span class="pcard__txt">
+            <span class="pcard__t">Bãi Xép</span>
+            <span class="pcard__a"><i class="ph-fill ph-map-pin"></i>An Chấn, Xã Tuy An Bắc, Tỉnh Đắk Lắk</span>
+          </span>
+        </span>
+      </button>
+      <button class="pcard" onclick="toast('Mũi Điện')">
+        <img class="pcard__ph" src="https://picsum.photos/seed/daklak-mui-dien/720/540" alt="" loading="lazy">
+        <span class="pcard__veil"></span>
+        <span class="pcard__b">
+          <span class="pcard__txt">
+            <span class="pcard__t">Mũi Điện</span>
+            <span class="pcard__a"><i class="ph-fill ph-map-pin"></i>Phường Đông Hòa, Tỉnh Đắk Lắk</span>
+          </span>
+        </span>
+      </button>
+      <button class="pcard" onclick="toast('Gành Đá Đĩa')">
+        <img class="pcard__ph" src="https://picsum.photos/seed/daklak-ganh-da-dia/720/540" alt="" loading="lazy">
+        <span class="pcard__veil"></span>
+        <span class="pcard__b">
+          <span class="pcard__txt">
+            <span class="pcard__t">Gành Đá Đĩa</span>
+            <span class="pcard__a"><i class="ph-fill ph-map-pin"></i>Xã Tuy An Đông, Tỉnh Đắk Lắk</span>
+          </span>
+        </span>
+      </button>
+      <button class="pcard" onclick="toast('Thác Dray Nur')">
+        <img class="pcard__ph" src="https://picsum.photos/seed/daklak-dray-nur/720/540" alt="" loading="lazy">
+        <span class="pcard__veil"></span>
+        <span class="pcard__b">
+          <span class="pcard__txt">
+            <span class="pcard__t">Thác Dray Nur</span>
+            <span class="pcard__a"><i class="ph-fill ph-map-pin"></i>Xã Dray Sáp, Tỉnh Đắk Lắk</span>
+          </span>
+        </span>
+      </button>
+      <button class="pcard" onclick="toast('Hồ Lắk')">
+        <img class="pcard__ph" src="https://picsum.photos/seed/daklak-ho-lak/720/540" alt="" loading="lazy">
+        <span class="pcard__veil"></span>
+        <span class="pcard__b">
+          <span class="pcard__txt">
+            <span class="pcard__t">Hồ Lắk</span>
+            <span class="pcard__a"><i class="ph-fill ph-map-pin"></i>Thị trấn Liên Sơn, Tỉnh Đắk Lắk</span>
+          </span>
+        </span>
+      </button>
+      <button class="pcard" onclick="toast('Khu du lịch Buôn Đôn')">
+        <img class="pcard__ph" src="https://picsum.photos/seed/daklak-buon-don/720/540" alt="" loading="lazy">
+        <span class="pcard__veil"></span>
+        <span class="pcard__b">
+          <span class="pcard__txt">
+            <span class="pcard__t">Khu du lịch Buôn Đôn</span>
+            <span class="pcard__a"><i class="ph-fill ph-map-pin"></i>Xã Krông Na, Tỉnh Đắk Lắk</span>
+          </span>
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ==================== Y TẾ ==================== -->
+  <section class="screen" id="s-yte">
+    <header class="subhdr subhdr--tabs">
+      <div class="subhdr__row">
+        <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
+        <h1>Y tế</h1>
+        <div class="sp"><button class="back aabtn" onclick="toggleKit()" aria-label="Cài đặt hiển thị" aria-expanded="false"><i class="ph ph-gear-six"></i></button></div>
+      </div>
+      <div class="ntabs" id="yte-tabs"><button class="ntab on" onclick="dTab('yte-tabs',0)">Cơ sở y tế</button><button class="ntab" onclick="dTab('yte-tabs',1)">Bản đồ</button><button class="ntab" onclick="dTab('yte-tabs',2)">Thông tin y tế</button></div>
+    </header>
+    <button class="searchbar" onclick="toast('Tìm bệnh viện, trạm y tế…')"><i class="ph ph-magnifying-glass"></i><span>Tìm bệnh viện, trạm y tế…</span></button>
+    <div class="pad-b" id="yte-p0">
+      <p class="dcount">171 địa điểm</p>
+      <div class="dgroup" id="g-yte-1">
+        <button class="dgroup__h" onclick="dToggle('g-yte-1')"><b>Tuyến tỉnh</b><span class="dgroup__n">9</span><i class="ph ph-caret-down"></i></button>
+        <div class="dgroup__bd">
+        <button class="drow" onclick="toast('Bệnh viện Tâm thần')"><span class="dic"><i class="ph-fill ph-hospital"></i></span>
+          <span class="dbd"><span class="dt2">Bệnh viện Tâm thần</span><span class="da">Phường Buôn Ma Thuột, Tỉnh Đắk Lắk</span><span class="dhang"><i class="ph-fill ph-seal-check"></i>Hạng 3</span></span>
+        </button>
+        <button class="drow" onclick="toast('Bệnh viện Công an tỉnh')"><span class="dic"><i class="ph-fill ph-hospital"></i></span>
+          <span class="dbd"><span class="dt2">Bệnh viện Công an tỉnh</span><span class="da">Phường Buôn Ma Thuột, Tỉnh Đắk Lắk</span><span class="dhang"><i class="ph-fill ph-seal-check"></i>Hạng 3</span></span>
+        </button>
+        <button class="drow" onclick="toast('Bệnh viện Mắt')"><span class="dic"><i class="ph-fill ph-hospital"></i></span>
+          <span class="dbd"><span class="dt2">Bệnh viện Mắt</span><span class="da">90 Trần Phú, Phường Buôn Ma Thuột, Tỉnh Đắk Lắk</span><span class="dhang dhang--2"><i class="ph-fill ph-seal-check"></i>Hạng 2</span></span>
+        </button>
+        <button class="drow" onclick="toast('Bệnh viện Đa khoa vùng Tây Nguyên')"><span class="dic"><i class="ph-fill ph-hospital"></i></span>
+          <span class="dbd"><span class="dt2">Bệnh viện Đa khoa vùng Tây Nguyên</span><span class="da">Phường Buôn Ma Thuột, Tỉnh Đắk Lắk</span><span class="dhang dhang--1"><i class="ph-fill ph-seal-check"></i>Hạng 1</span></span>
+        </button>
+        <button class="drow" onclick="toast('Trung tâm Da liễu')"><span class="dic"><i class="ph-fill ph-hospital"></i></span>
+          <span class="dbd"><span class="dt2">Trung tâm Da liễu</span><span class="da">Phường Buôn Ma Thuột, Tỉnh Đắk Lắk</span><span class="dhang"><i class="ph-fill ph-seal-check"></i>Hạng 3</span></span>
+        </button>
+        <button class="drow" onclick="toast('Bệnh viện Phổi Đắk Lắk')"><span class="dic"><i class="ph-fill ph-hospital"></i></span>
+          <span class="dbd"><span class="dt2">Bệnh viện Phổi Đắk Lắk</span><span class="da">136 Nguyễn Thị Định, Phường Thành Nhất, Tỉnh Đắk Lắk</span><span class="dhang dhang--2"><i class="ph-fill ph-seal-check"></i>Hạng 2</span></span>
+        </button>
+        </div>
+      </div>
+      <div class="dgroup closed" id="g-yte-2">
+        <button class="dgroup__h" onclick="dToggle('g-yte-2')"><b>Tuyến huyện</b><span class="dgroup__n">24</span><i class="ph ph-caret-down"></i></button>
+        <div class="dgroup__bd">
+        <button class="drow" onclick="toast('Trung tâm Y tế Cư M’gar')"><span class="dic"><i class="ph-fill ph-first-aid-kit"></i></span>
+          <span class="dbd"><span class="dt2">Trung tâm Y tế Cư M’gar</span><span class="da">Thị trấn Quảng Phú, Tỉnh Đắk Lắk</span><span class="dhang"><i class="ph-fill ph-seal-check"></i>Hạng 3</span></span>
+        </button>
+        <button class="drow" onclick="toast('Trung tâm Y tế Krông Pắc')"><span class="dic"><i class="ph-fill ph-first-aid-kit"></i></span>
+          <span class="dbd"><span class="dt2">Trung tâm Y tế Krông Pắc</span><span class="da">Thị trấn Phước An, Tỉnh Đắk Lắk</span><span class="dhang"><i class="ph-fill ph-seal-check"></i>Hạng 3</span></span>
+        </button>
         </div>
       </div>
     </div>
+    <div class="pad-b" id="yte-p1" hidden>
+      <div class="dholder"><i class="ph-fill ph-map-trifold"></i><p>Bản đồ 171 cơ sở y tế trên địa bàn tỉnh, lọc theo tuyến và khoảng cách tới vị trí của bạn.</p></div>
+    </div>
+    <div class="pad-b" id="yte-p2" hidden>
+      <div class="dholder"><i class="ph-fill ph-newspaper"></i><p>Hướng dẫn khám chữa bệnh BHYT, lịch tiêm chủng và khuyến cáo dịch bệnh từ Sở Y tế.</p></div>
+    </div>
+  </section>
 
-    <button class="altlink" onclick="go('s-pa-detail')"><i class="ph ph-arrows-left-right"></i> Xem cách bố cục A · thẻ theo khối</button>
+  <!-- ==================== GIÁO DỤC ==================== -->
+  <section class="screen" id="s-giaoduc">
+    <header class="subhdr subhdr--tabs">
+      <div class="subhdr__row">
+        <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
+        <h1>Giáo dục</h1>
+        <div class="sp"><button class="back aabtn" onclick="toggleKit()" aria-label="Cài đặt hiển thị" aria-expanded="false"><i class="ph ph-gear-six"></i></button></div>
+      </div>
+      <div class="ntabs" id="gd-tabs"><button class="ntab on" onclick="dTab('gd-tabs',0)">Trường học</button><button class="ntab" onclick="dTab('gd-tabs',1)">Bản đồ</button><button class="ntab" onclick="dTab('gd-tabs',2)">Thông tin giáo dục</button></div>
+    </header>
+    <button class="searchbar" onclick="toast('Tìm trường học…')"><i class="ph ph-magnifying-glass"></i><span>Tìm trường học…</span></button>
+    <div class="pad-b" id="gd-p0">
+      <p class="dcount">703 địa điểm</p>
+      <div class="dgroup" id="g-gd-1">
+        <button class="dgroup__h" onclick="dToggle('g-gd-1')"><b>Phòng Giáo dục Cư Kuin</b><span class="dgroup__n">41</span><i class="ph ph-caret-down"></i></button>
+        <div class="dgroup__bd">
+        <button class="drow" onclick="toast('Trường mầm non Hoa Mai')"><span class="dic"><i class="ph-fill ph-student"></i></span>
+          <span class="dbd"><span class="dt2">Trường mầm non Hoa Mai</span><span class="da">Xã Cư Kuin · Trường</span><span class="dacts"><span onclick="event.stopPropagation();toast('Xem bản đồ')"><i class="ph ph-map-trifold"></i>Xem bản đồ</span><span onclick="event.stopPropagation();toast('Chỉ đường')"><i class="ph-fill ph-navigation-arrow"></i>Chỉ đường</span></span></span>
+        </button>
+        <button class="drow" onclick="toast('Trường Tiểu học Phạm Hồng Thái')"><span class="dic"><i class="ph-fill ph-student"></i></span>
+          <span class="dbd"><span class="dt2">Trường Tiểu học Phạm Hồng Thái</span><span class="da">Xã Cư Kuin · Trường</span><span class="dacts"><span onclick="event.stopPropagation();toast('Xem bản đồ')"><i class="ph ph-map-trifold"></i>Xem bản đồ</span><span onclick="event.stopPropagation();toast('Chỉ đường')"><i class="ph-fill ph-navigation-arrow"></i>Chỉ đường</span></span></span>
+        </button>
+        <button class="drow" onclick="toast('Trường mẫu giáo Vành Khuyên')"><span class="dic"><i class="ph-fill ph-student"></i></span>
+          <span class="dbd"><span class="dt2">Trường mẫu giáo Vành Khuyên</span><span class="da">Xã Cư Kuin · Trường</span><span class="dacts"><span onclick="event.stopPropagation();toast('Xem bản đồ')"><i class="ph ph-map-trifold"></i>Xem bản đồ</span><span onclick="event.stopPropagation();toast('Chỉ đường')"><i class="ph-fill ph-navigation-arrow"></i>Chỉ đường</span></span></span>
+        </button>
+        <button class="drow" onclick="toast('THCS Nguyễn Đình Chiểu')"><span class="dic"><i class="ph-fill ph-student"></i></span>
+          <span class="dbd"><span class="dt2">THCS Nguyễn Đình Chiểu</span><span class="da">Xã Cư Kuin · Trường</span><span class="dacts"><span onclick="event.stopPropagation();toast('Xem bản đồ')"><i class="ph ph-map-trifold"></i>Xem bản đồ</span><span onclick="event.stopPropagation();toast('Chỉ đường')"><i class="ph-fill ph-navigation-arrow"></i>Chỉ đường</span></span></span>
+        </button>
+        <button class="drow" onclick="toast('Trường THCS Giang Sơn')"><span class="dic"><img src="https://picsum.photos/seed/thcs-giang-son/84/84" alt=""></span>
+          <span class="dbd"><span class="dt2">Trường THCS Giang Sơn</span><span class="da">Xã Cư Kuin · Trường</span><span class="dacts"><span onclick="event.stopPropagation();toast('Xem bản đồ')"><i class="ph ph-map-trifold"></i>Xem bản đồ</span><span onclick="event.stopPropagation();toast('Chỉ đường')"><i class="ph-fill ph-navigation-arrow"></i>Chỉ đường</span></span></span>
+        </button>
+        </div>
+      </div>
+      <div class="dgroup closed" id="g-gd-2">
+        <button class="dgroup__h" onclick="dToggle('g-gd-2')"><b>Phòng Giáo dục Buôn Ma Thuột</b><span class="dgroup__n">86</span><i class="ph ph-caret-down"></i></button>
+        <div class="dgroup__bd">
+        <button class="drow" onclick="toast('Trường THPT Chu Văn An')"><span class="dic"><i class="ph-fill ph-student"></i></span>
+          <span class="dbd"><span class="dt2">Trường THPT Chu Văn An</span><span class="da">Phường Buôn Ma Thuột · Trường</span><span class="dacts"><span onclick="event.stopPropagation();toast('Xem bản đồ')"><i class="ph ph-map-trifold"></i>Xem bản đồ</span><span onclick="event.stopPropagation();toast('Chỉ đường')"><i class="ph-fill ph-navigation-arrow"></i>Chỉ đường</span></span></span>
+        </button>
+        <button class="drow" onclick="toast('Trường Tiểu học Lê Lợi')"><span class="dic"><i class="ph-fill ph-student"></i></span>
+          <span class="dbd"><span class="dt2">Trường Tiểu học Lê Lợi</span><span class="da">Phường Thành Nhất · Trường</span><span class="dacts"><span onclick="event.stopPropagation();toast('Xem bản đồ')"><i class="ph ph-map-trifold"></i>Xem bản đồ</span><span onclick="event.stopPropagation();toast('Chỉ đường')"><i class="ph-fill ph-navigation-arrow"></i>Chỉ đường</span></span></span>
+        </button>
+        </div>
+      </div>
+    </div>
+    <div class="pad-b" id="gd-p1" hidden>
+      <div class="dholder"><i class="ph-fill ph-map-trifold"></i><p>Bản đồ 703 cơ sở giáo dục, lọc theo cấp học và phòng giáo dục quản lý.</p></div>
+    </div>
+    <div class="pad-b" id="gd-p2" hidden>
+      <div class="dholder"><i class="ph-fill ph-newspaper"></i><p>Thông tin tuyển sinh đầu cấp, lịch thi và văn bản hướng dẫn của Sở Giáo dục và Đào tạo.</p></div>
+    </div>
+  </section>
+
+  <!-- ==================== QUÁN CÀ PHÊ ==================== -->
+  <section class="screen" id="s-cafe">
+    <header class="subhdr subhdr--tabs">
+      <div class="subhdr__row">
+        <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
+        <h1>Quán cà phê</h1>
+        <div class="sp"><button class="back aabtn" onclick="toggleKit()" aria-label="Cài đặt hiển thị" aria-expanded="false"><i class="ph ph-gear-six"></i></button></div>
+      </div>
+    </header>
+    <button class="searchbar" onclick="toast('Tìm quán cà phê…')"><i class="ph ph-magnifying-glass"></i><span>Tìm quán cà phê…</span></button>
+    <div class="pad-b pgrid">
+      <button class="pcard" onclick="openVenue('dacco')">
+        <img class="pcard__ph" src="https://picsum.photos/seed/daklak-cafe-dacco/720/540" alt="" loading="lazy">
+        <span class="pcard__veil"></span>
+        <span class="pcard__b">
+          <span class="pcard__txt">
+            <span class="pcard__t">Công ty TNHH Cà phê Dacco</span>
+            <span class="pcard__a"><i class="ph-fill ph-map-pin"></i>290 Phan Bội Châu</span>
+            <span class="pstat"><span class="st"><i class="ph-fill ph-star"></i>5.0</span><span class="dt"><i class="ph-fill ph-navigation-arrow"></i>1,2 km</span></span>
+          </span>
+        </span>
+      </button>
+      <button class="pcard" onclick="openVenue('bun')">
+        <img class="pcard__ph" src="https://picsum.photos/seed/daklak-cafe-bun/720/540" alt="" loading="lazy">
+        <span class="pcard__veil"></span>
+        <span class="pcard__b">
+          <span class="pcard__txt">
+            <span class="pcard__t">Bun Coffee</span>
+            <span class="pcard__a"><i class="ph-fill ph-map-pin"></i>77/24 Nguyễn Thị Định</span>
+            <span class="pstat"><span class="st"><i class="ph-fill ph-star"></i>5.0</span><span class="dt"><i class="ph-fill ph-navigation-arrow"></i>2,4 km</span></span>
+          </span>
+        </span>
+      </button>
+      <button class="pcard" onclick="openVenue('arul')">
+        <img class="pcard__ph" src="https://picsum.photos/seed/daklak-cafe-arul/720/540" alt="" loading="lazy">
+        <span class="pcard__veil"></span>
+        <span class="pcard__b">
+          <span class="pcard__txt">
+            <span class="pcard__t">Cà phê Arul</span>
+            <span class="pcard__a"><i class="ph-fill ph-map-pin"></i>Buôn Akŏ Dhông, Phường Buôn Ma Thuột</span>
+            <span class="pstat"><span class="st"><i class="ph-fill ph-star"></i>4.8</span><span class="dt"><i class="ph-fill ph-navigation-arrow"></i>3,1 km</span></span>
+          </span>
+        </span>
+      </button>
+      <button class="pcard" onclick="openVenue('trungnguyen')">
+        <img class="pcard__ph" src="https://picsum.photos/seed/daklak-cafe-trungnguyen/720/540" alt="" loading="lazy">
+        <span class="pcard__veil"></span>
+        <span class="pcard__b">
+          <span class="pcard__txt">
+            <span class="pcard__t">Trung Nguyên Legend Café</span>
+            <span class="pcard__a"><i class="ph-fill ph-map-pin"></i>268 Nguyễn Tất Thành</span>
+            <span class="pstat"><span class="st"><i class="ph-fill ph-star"></i>4.6</span><span class="dt"><i class="ph-fill ph-navigation-arrow"></i>0,9 km</span></span>
+          </span>
+        </span>
+      </button>
+      <button class="pcard" onclick="openVenue('chuvan')">
+        <img class="pcard__ph" src="https://picsum.photos/seed/daklak-cafe-chuvan/720/540" alt="" loading="lazy">
+        <span class="pcard__veil"></span>
+        <span class="pcard__b">
+          <span class="pcard__txt">
+            <span class="pcard__t">Cà phê Chư Văn</span>
+            <span class="pcard__a"><i class="ph-fill ph-map-pin"></i>Xã Cư M’gar</span>
+            <span class="pstat"><span class="st"><i class="ph-fill ph-star"></i>4.6</span><span class="dt"><i class="ph-fill ph-navigation-arrow"></i>18 km</span></span>
+          </span>
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ==================== LƯU TRÚ ==================== -->
+  <section class="screen" id="s-luutru">
+    <header class="subhdr subhdr--tabs">
+      <div class="subhdr__row">
+        <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
+        <h1>Lưu trú</h1>
+        <div class="sp"><button class="back aabtn" onclick="toggleKit()" aria-label="Cài đặt hiển thị" aria-expanded="false"><i class="ph ph-gear-six"></i></button></div>
+      </div>
+    </header>
+    <button class="searchbar" onclick="toast('Tìm khách sạn, homestay…')"><i class="ph ph-magnifying-glass"></i><span>Tìm khách sạn, homestay…</span></button>
+    <div class="pad-b pgrid pgrid--tall">
+      <button class="pcard" onclick="toast('Daisy House – Homestay')">
+        <span class="pmos"><img src="https://picsum.photos/seed/daisy-a/420/320" alt="" loading="lazy"><img src="https://picsum.photos/seed/daisy-b/420/320" alt="" loading="lazy"><img src="https://picsum.photos/seed/daisy-c/420/320" alt="" loading="lazy"><img src="https://picsum.photos/seed/daisy-d/420/320" alt="" loading="lazy"></span>
+        <span class="pcard__veil"></span>
+        <span class="pchips"><span class="gchip gchip--r"><i class="ph-fill ph-images"></i>4</span></span>
+        <span class="pcard__b">
+          <span class="pcard__txt">
+            <span class="pcard__t">Daisy House – Homestay</span>
+            <span class="pcard__a"><i class="ph-fill ph-map-pin"></i>32 Cần Vương, Phường Tuy Hòa, Tỉnh Đắk Lắk</span>
+          </span>
+          <span class="pcall" onclick="event.stopPropagation();toast('Gọi 0934842227')"><i class="ph-fill ph-phone"></i>0934842227</span>
+        </span>
+      </button>
+      <button class="pcard" onclick="toast('Làng Chài Homestay Phú Yên')">
+        <span class="pmos"><img src="https://picsum.photos/seed/langchai-a/420/320" alt="" loading="lazy"><img src="https://picsum.photos/seed/langchai-b/420/320" alt="" loading="lazy"><img src="https://picsum.photos/seed/langchai-c/420/320" alt="" loading="lazy"><img src="https://picsum.photos/seed/langchai-d/420/320" alt="" loading="lazy"></span>
+        <span class="pcard__veil"></span>
+        <span class="pchips"><span class="gchip gchip--r"><i class="ph-fill ph-images"></i>4</span></span>
+        <span class="pcard__b">
+          <span class="pcard__txt">
+            <span class="pcard__t">Làng Chài Homestay Phú Yên</span>
+            <span class="pcard__a"><i class="ph-fill ph-map-pin"></i>Khu phố Phú Thọ 1, Phường Hòa Hiệp, Tỉnh Đắk Lắk</span>
+          </span>
+          <span class="pcall" onclick="event.stopPropagation();toast('Gọi 0976983336')"><i class="ph-fill ph-phone"></i>0976983336</span>
+        </span>
+      </button>
+      <button class="pcard" onclick="toast('Khách sạn Sài Gòn – Ban Mê')">
+        <span class="pmos"><img src="https://picsum.photos/seed/sgbanme-a/420/320" alt="" loading="lazy"><img src="https://picsum.photos/seed/sgbanme-b/420/320" alt="" loading="lazy"><img src="https://picsum.photos/seed/sgbanme-c/420/320" alt="" loading="lazy"><img src="https://picsum.photos/seed/sgbanme-d/420/320" alt="" loading="lazy"></span>
+        <span class="pcard__veil"></span>
+        <span class="pchips"><span class="gchip gchip--r"><i class="ph-fill ph-images"></i>4</span></span>
+        <span class="pcard__b">
+          <span class="pcard__txt">
+            <span class="pcard__t">Khách sạn Sài Gòn – Ban Mê</span>
+            <span class="pcard__a"><i class="ph-fill ph-map-pin"></i>01 Phan Chu Trinh, Phường Buôn Ma Thuột, Tỉnh Đắk Lắk</span>
+          </span>
+          <span class="pcall" onclick="event.stopPropagation();toast('Gọi 02623685666')"><i class="ph-fill ph-phone"></i>02623685666</span>
+        </span>
+      </button>
+      <button class="pcard" onclick="toast('M’Liêng Homestay')">
+        <span class="pmos"><img src="https://picsum.photos/seed/mlieng-a/420/320" alt="" loading="lazy"><img src="https://picsum.photos/seed/mlieng-b/420/320" alt="" loading="lazy"><img src="https://picsum.photos/seed/mlieng-c/420/320" alt="" loading="lazy"><img src="https://picsum.photos/seed/mlieng-d/420/320" alt="" loading="lazy"></span>
+        <span class="pcard__veil"></span>
+        <span class="pchips"><span class="gchip gchip--r"><i class="ph-fill ph-images"></i>4</span></span>
+        <span class="pcard__b">
+          <span class="pcard__txt">
+            <span class="pcard__t">M’Liêng Homestay</span>
+            <span class="pcard__a"><i class="ph-fill ph-map-pin"></i>Buôn M’Liêng, Xã Đắk Liêng, Tỉnh Đắk Lắk</span>
+          </span>
+          <span class="pcall" onclick="event.stopPropagation();toast('Gọi 0905123456')"><i class="ph-fill ph-phone"></i>0905123456</span>
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ==================== CHI TIẾT ĐỊA ĐIỂM ==================== -->
+  <section class="screen" id="s-venue">
+    <header class="subhdr">
+      <button class="back" onclick="back()"><i class="ph ph-arrow-left"></i></button>
+      <h1>Chi tiết</h1>
+      <div class="sp"><button class="back aabtn" onclick="toggleKit()" aria-label="Cài đặt hiển thị" aria-expanded="false"><i class="ph ph-gear-six"></i></button></div>
+    </header>
+
+    <div class="vhero">
+      <img id="v-img" src="" alt="">
+      <span class="gchip vhero__n"><i class="ph-fill ph-images"></i><span id="v-nimg">1/8</span></span>
+      <span class="vhero__dots"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+    </div>
+
+    <div class="vhead">
+      <span class="vkind"><i class="ph-fill ph-coffee"></i>Quán cà phê</span>
+      <h2 class="vname" id="v-name">—</h2>
+      <div class="vmeta2" id="v-rate"></div>
+      <span class="vaddr"><i class="ph-fill ph-map-pin"></i><span id="v-addr">—</span></span>
+    </div>
+
+    <div class="vbar">
+      <button onclick="toast('Gọi ' + V.cur.tel)"><i class="ph-fill ph-phone"></i><span>Gọi</span></button>
+      <button onclick="toast('Chỉ đường tới ' + V.cur.ten)"><i class="ph-fill ph-navigation-arrow"></i><span>Chỉ đường</span></button>
+      <button onclick="toast('Chia sẻ ' + V.cur.ten)"><i class="ph-fill ph-share-network"></i><span>Chia sẻ</span></button>
+      <button id="v-save" onclick="vSave(this)"><i class="ph ph-bookmark-simple"></i><span>Lưu</span></button>
+    </div>
+
+    <div class="vfacts" id="v-facts"></div>
+
+    <div class="vsec">
+      <h2>Giới thiệu</h2>
+      <div class="vbox">
+        <p class="clamp" id="v-story">—</p>
+        <button class="morebtn" onclick="toggleClamp(this,'v-story')">Xem thêm <i class="ph ph-caret-down"></i></button>
+      </div>
+    </div>
+
+    <div class="vsec">
+      <h2>Đường đi &amp; chỗ để xe</h2>
+      <div class="vbox">
+        <div class="vrowi"><i class="ph-fill ph-map-pin-line"></i><span class="b"><b>Chỉ dẫn đường đi</b><p id="v-dir">—</p></span></div>
+        <div class="vrowi"><i class="ph-fill ph-car"></i><span class="b"><b>Bãi đỗ xe</b><p id="v-park">—</p></span></div>
+        <button class="vgo2" onclick="toast('Mở bản đồ chỉ đường')"><i class="ph-fill ph-navigation-arrow"></i> Mở bản đồ chỉ đường</button>
+      </div>
+    </div>
+
+    <div class="dgroup closed" id="g-venue-reg" style="margin-top:20px">
+      <button class="dgroup__h" onclick="dToggle('g-venue-reg')"><b>Thông tin đăng ký</b><span class="dgroup__n">3</span><i class="ph ph-caret-down"></i></button>
+      <div class="dgroup__bd">
+        <div class="vkv"><span>Mã số thuế</span><b id="v-mst">—</b></div>
+        <div class="vkv"><span>Số giấy phép kinh doanh</span><b id="v-gp">—</b></div>
+        <div class="vkv"><span>Đặc trưng</span><b id="v-dt">—</b></div>
+      </div>
+    </div>
   </section>
 
   <!-- toast -->
@@ -1585,8 +1986,8 @@ table.wardtable td.num{font-variant-numeric:tabular-nums}
 /* ---- Điều hướng màn hình (có ngăn xếp back) ---- */
 var stack=['s-home'];
 var PROFILE_SCREEN='s-taikhoan';
-var navMap={'s-home':'s-home','s-gioithieu':'s-gioithieu','s-phananh-form':'s-phananh-form','s-search':'s-search','s-taikhoan':'s-taikhoan',
-  's-phananh-group':'s-phananh-form','s-pa-detail':'s-phananh-form','s-pa-detail-tl':'s-phananh-form','s-banphananh':'s-phananh-form','s-doisong':'s-home','s-dvc':'s-home','s-tintuc':'s-home','s-tienich':'s-home','s-all':'s-home','s-news':'s-home','s-thongbao':'s-home','s-thoitiet':'s-home'};
+var navMap={'s-venue':'s-home','s-dulich':'s-home','s-yte':'s-home','s-giaoduc':'s-home','s-cafe':'s-home','s-luutru':'s-home','s-home':'s-home','s-gioithieu':'s-gioithieu','s-phananh-form':'s-phananh-form','s-search':'s-search','s-taikhoan':'s-taikhoan',
+  's-phananh-group':'s-phananh-form','s-pa-detail-tl':'s-phananh-form','s-banphananh':'s-phananh-form','s-doisong':'s-home','s-dvc':'s-home','s-tintuc':'s-home','s-tienich':'s-home','s-all':'s-home','s-news':'s-home','s-thongbao':'s-home','s-thoitiet':'s-home'};
 
 function show(id){
   document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active')});
@@ -1594,6 +1995,8 @@ function show(id){
   var active=navMap[id]||id;
   document.querySelectorAll('.nav').forEach(function(n){n.classList.toggle('on', n.dataset.nav===active)});
   if(document.getElementById('kit'))closeKit();
+  var ab=document.getElementById('pa-actbar');
+  if(ab) ab.hidden = (id!=='s-pa-detail-tl');
 }
 function go(id){ if(stack[stack.length-1]!==id){stack.push(id);} show(id); }
 function back(){ if(stack.length>1){stack.pop();} show(stack[stack.length-1]); }
@@ -1773,17 +2176,151 @@ function rate(btn, nhan){
   document.getElementById(pre+'-rated-v').textContent = nhan;
   box.hidden = true;
   document.getElementById(pre+'-rated').hidden = false;
+  barRated(nhan);
   toast('Cảm ơn bạn đã đánh giá: ' + nhan);
 }
 function rateAgain(){
   document.querySelectorAll('.rate').forEach(function(b){ b.hidden = false });
   document.querySelectorAll('.rated').forEach(function(b){ b.hidden = true });
+  barRated(null);
+}
+/* thanh dính đáy + lời mời đầu trang đổi theo trạng thái đánh giá */
+function barRated(nhan){
+  var q = document.getElementById('qa-rate'); if(!q) return;
+  q.classList.toggle('done', !!nhan);
+  q.querySelector('i').className = nhan ? 'ph-fill ph-check-circle' : 'ph-fill ph-star';
+  q.querySelector('span').textContent = nhan ? 'Đã đánh giá' : 'Đánh giá';
+}
+/* mở tab Các bước xử lý */
+function goSteps(){ paTab('pa-pane-2'); }
+/* hai tab của màn chi tiết phản ánh */
+function paTab(pane){
+  var t = document.getElementById('patabs'); if(!t) return;
+  t.querySelectorAll('.ntab').forEach(function(b){ b.classList.toggle('on', b.dataset.pane===pane) });
+  ['pa-pane-1','pa-pane-2'].forEach(function(p){ document.getElementById(p).hidden = (p!==pane) });
+  var q = document.getElementById('qa-steps');
+  if(q) q.classList.toggle('on', pane==='pa-pane-2');
+  document.getElementById('s-pa-detail-tl').scrollTop = 0;
+}
+(function(){
+  var t = document.getElementById('patabs'); if(!t) return;
+  t.addEventListener('click', function(e){
+    var b = e.target.closest('.ntab'); if(b) paTab(b.dataset.pane);
+  });
+  var h = document.getElementById('pa-hero');
+  if(h) h.addEventListener('scroll', function(){
+    document.getElementById('pa-hero-n').textContent = Math.round(h.scrollLeft/h.clientWidth) + 1;
+  }, {passive:true});
+})();
+/* nhảy tới mục đánh giá, luôn về tab 1 trước */
+function goRate(){
+  paTab('pa-pane-1');
+  var r = document.getElementById('tl-rate'), d = document.getElementById('tl-rated');
+  var el = (r && !r.hidden ? r : d).closest('.pbox');
+  el.scrollIntoView({behavior:'smooth', block:'center'});
+  el.classList.add('flash');
+  setTimeout(function(){ el.classList.remove('flash') }, 1400);
+}
+/* nhảy tới ô gửi ý kiến bổ sung và đặt con trỏ sẵn */
+function goSay(){
+  paTab('pa-pane-1');
+  var t = document.querySelector('#s-pa-detail-tl .textarea');
+  var el = t.closest('.pbox');
+  el.scrollIntoView({behavior:'smooth', block:'center'});
+  el.classList.add('flash');
+  setTimeout(function(){ el.classList.remove('flash'); t.focus() }, 420);
 }
 /* logo cơ quan dùng lại logo tỉnh đã nhúng sẵn */
 (function(){
   var src = document.querySelector('.brand__mark img');
   if (src) document.querySelectorAll('.org-logo').forEach(function(i){ i.src = src.src });
 })();
+/* ---- Danh bạ cơ sở: thu gọn / mở nhóm ---- */
+function dToggle(id){
+  var g = document.getElementById(id); if(!g) return;
+  g.classList.toggle('closed');
+}
+/* ---- Tab phụ của màn Y tế, Giáo dục ---- */
+function dTab(tabsId, i){
+  var t = document.getElementById(tabsId); if(!t) return;
+  var pre = tabsId.split('-')[0];
+  t.querySelectorAll('.ntab').forEach(function(b, k){ b.classList.toggle('on', k===i) });
+  for(var k=0;k<3;k++){
+    var p = document.getElementById(pre + '-p' + k);
+    if(p) p.hidden = (k!==i);
+  }
+  t.closest('.screen').scrollTop = 0;
+}
+/* ---- Chi tiết địa điểm ---- */
+var V = { cur: {}, data: {
+  dacco: { ten:'Công ty TNHH Cà phê Dacco', diachi:'290 Phan Bội Châu', sao:0, binhluan:0, km:'1,2 km',
+    anh:'daklak-cafe-dacco', nanh:8, tel:'02623851234',
+    story:'Chuyên cung cấp các dòng máy pha cà phê, máy móc pha chế và dụng cụ pha chế dành cho các quán Coffee, Take Away, Cafe mang đi.',
+    dir:'290 Phan Bội Châu, Phường Buôn Ma Thuột, Tỉnh Đắk Lắk', park:'Bãi đỗ xe xung quanh vỉa hè quán',
+    dientich:'170 m²', quymo:'100 khách', nhanvien:'5 nhân viên/ca', phantram:'80% cà phê nguyên chất',
+    mst:'40A8025291', gp:'40A8025291', dactrung:'Cà phê rang xay tại chỗ' },
+  bun: { ten:'Bun Coffee', diachi:'77/24 Nguyễn Thị Định', sao:5, binhluan:12, km:'2,4 km',
+    anh:'daklak-cafe-bun', nanh:6, tel:'0905112233',
+    story:'Quán sân vườn giữa lòng thành phố, phục vụ cà phê Robusta Đắk Lắk pha máy và pha phin, có không gian làm việc yên tĩnh.',
+    dir:'77/24 Nguyễn Thị Định, Phường Thành Nhất, Tỉnh Đắk Lắk', park:'Bãi giữ xe riêng trong khuôn viên',
+    dientich:'320 m²', quymo:'150 khách', nhanvien:'8 nhân viên/ca', phantram:'100% cà phê nguyên chất',
+    mst:'6001234567', gp:'40A1002233', dactrung:'Sân vườn, nhận đặt nhóm' },
+  arul: { ten:'Cà phê Arul', diachi:'Buôn Akŏ Dhông, Phường Buôn Ma Thuột', sao:5, binhluan:48, km:'3,1 km',
+    anh:'daklak-cafe-arul', nanh:10, tel:'0914556677',
+    story:'Nằm trong buôn Akŏ Dhông, quán giữ nguyên nếp nhà dài Ê Đê, phục vụ cà phê truyền thống và giới thiệu văn hoá cồng chiêng vào cuối tuần.',
+    dir:'Buôn Akŏ Dhông, Phường Buôn Ma Thuột, Tỉnh Đắk Lắk', park:'Sân rộng trong khuôn viên nhà dài',
+    dientich:'600 m²', quymo:'200 khách', nhanvien:'10 nhân viên/ca', phantram:'100% cà phê nguyên chất',
+    mst:'6007654321', gp:'40A1005566', dactrung:'Nhà dài Ê Đê, cồng chiêng cuối tuần' },
+  trungnguyen: { ten:'Trung Nguyên Legend Café', diachi:'268 Nguyễn Tất Thành', sao:5, binhluan:134, km:'0,9 km',
+    anh:'daklak-cafe-trungnguyen', nanh:12, tel:'02623777888',
+    story:'Không gian cà phê theo chuẩn Trung Nguyên Legend, phục vụ các dòng cà phê đặc sản của vùng nguyên liệu Đắk Lắk.',
+    dir:'268 Nguyễn Tất Thành, Phường Buôn Ma Thuột, Tỉnh Đắk Lắk', park:'Hầm giữ xe của toà nhà',
+    dientich:'450 m²', quymo:'180 khách', nhanvien:'12 nhân viên/ca', phantram:'100% cà phê nguyên chất',
+    mst:'6000998877', gp:'40A1009988', dactrung:'Cà phê đặc sản, bán cà phê hạt' },
+  chuvan: { ten:'Cà phê Chư Văn', diachi:'Xã Cư M’gar', sao:5, binhluan:7, km:'18 km',
+    anh:'daklak-cafe-chuvan', nanh:5, tel:'0987443322',
+    story:'Quán nằm ngay vùng nguyên liệu, khách có thể tham quan vườn cà phê và xem quy trình rang xay tại chỗ.',
+    dir:'Thôn 3, Xã Cư M’gar, Tỉnh Đắk Lắk', park:'Sân đất rộng trước quán',
+    dientich:'800 m²', quymo:'120 khách', nhanvien:'4 nhân viên/ca', phantram:'100% cà phê nguyên chất',
+    mst:'6003344556', gp:'40A1003344', dactrung:'Tham quan vườn, rang xay tại chỗ' }
+}};
+
+function openVenue(key){
+  var d = V.data[key]; if(!d) return;
+  V.cur = d;
+  document.getElementById('v-img').src = 'https://picsum.photos/seed/' + d.anh + '/720/450';
+  document.getElementById('v-nimg').textContent = '1/' + d.nanh;
+  document.getElementById('v-name').textContent = d.ten;
+  document.getElementById('v-addr').textContent = d.diachi;
+  /* chưa ai đánh giá thì nói thẳng, không vẽ 5 sao đặc rồi ghi 0 bình luận */
+  document.getElementById('v-rate').innerHTML = d.binhluan
+    ? '<b><i class="ph-fill ph-star"></i>' + d.sao.toFixed(1) + '</b><span>' + d.binhluan + ' bình luận</span>'
+      + '<i class="sep"></i><span>' + d.km + '</span>'
+    : '<span class="vnorate">Chưa có đánh giá</span><i class="sep"></i><span>' + d.km + '</span>';
+  document.getElementById('v-facts').innerHTML = [
+    ['ph-ruler', d.dientich], ['ph-users-three', d.quymo], ['ph-coffee', d.phantram],
+    ['ph-user-circle', d.nhanvien]
+  ].map(function(x){ return '<span class="vfact"><i class="ph ' + x[0] + '"></i>' + x[1] + '</span>' }).join('');
+  document.getElementById('v-story').textContent = d.story;
+  document.getElementById('v-dir').textContent = d.dir;
+  document.getElementById('v-park').textContent = d.park;
+  document.getElementById('v-mst').textContent = d.mst;
+  document.getElementById('v-gp').textContent = d.gp;
+  document.getElementById('v-dt').textContent = d.dactrung;
+  /* về trạng thái ban đầu mỗi lần mở */
+  var c = document.getElementById('v-story'); c.classList.remove('open');
+  var m = c.parentNode.querySelector('.morebtn'); m.classList.remove('open'); m.childNodes[0].nodeValue = 'Xem thêm ';
+  var g = document.getElementById('g-venue-reg'); g.classList.add('closed');
+  go('s-venue');
+  document.getElementById('s-venue').scrollTop = 0;
+}
+
+function vSave(btn){
+  var on = btn.classList.toggle('on');
+  btn.querySelector('i').className = on ? 'ph-fill ph-bookmark-simple' : 'ph ph-bookmark-simple';
+  btn.querySelector('span').textContent = on ? 'Đã lưu' : 'Lưu';
+  toast(on ? 'Đã lưu ' + V.cur.ten : 'Bỏ lưu ' + V.cur.ten);
+}
 </script>
 
 
